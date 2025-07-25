@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contact Us | Learnix</title>
+     <link rel="icon" type="image/x-icon" href="/images/Logo-L.png" sizes="76*76">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Tiro+Bangla:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- External Libraries -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      :root {
+        --bg-color: #0a192f;
+        --text-color: #ccd6f6;
+        --heading-color: #e6f1ff;
+        --primary-color: #64ffda;
+        --secondary-color: #8892b0;
+        --card-bg-color: #112240;
+        --card-shadow: rgba(2, 12, 27, 0.7);
+        --navbar-bg: rgba(10, 25, 47, 0.85);
+        --footer-bg: #020c1b;
+        --toggle-bg: #8892b0;
+        --toggle-checked-bg: #64ffda;
+        --form-input-bg: #1d2d50;
+        --form-input-border: #2c446e;
+      }
+      body.light-mode {
+        --bg-color: #f0f2f5;
+        --text-color: #33374d;
+        --heading-color: #0d1a2e;
+        --primary-color: #0052d4;
+        --secondary-color: #5b6479;
+        --card-bg-color: #ffffff;
+        --card-shadow: rgba(0, 0, 0, 0.1);
+        --navbar-bg: rgba(255, 255, 255, 0.85);
+        --footer-bg: #e9ecef;
+        --toggle-bg: #aeb9cc;
+        --toggle-checked-bg: #0052d4;
+        --form-input-bg: #e9ecef;
+        --form-input-border: #ced4da;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        font-family: "Poppins", sans-serif;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        -webkit-font-smoothing: antialiased;
+      }
+      main {
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        color: var(--heading-color);
+        font-weight: 700;
+      }
+      .text-primary-theme {
+        color: var(--primary-color) !important;
+      }
+      .text-secondary-theme {
+        color: var(--secondary-color) !important;
+      }
+      .navbar {
+        background-color: var(--navbar-bg);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        transition: background-color 0.3s ease;
+        border-bottom: 1px solid rgba(136, 146, 176, 0.2);
+      }
+      .navbar-brand {
+        color: var(--heading-color) !important;
+        font-weight: 700;
+      }
+      .nav-link {
+        color: var(--secondary-color) !important;
+        font-weight: 600;
+        transition: color 0.3s ease;
+      }
+      .nav-link:hover,
+      .nav-link.active {
+        color: var(--primary-color) !important;
+      }
+      .navbar-toggler {
+        border-color: var(--secondary-color);
+      }
+      .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(100, 255, 218, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+      }
+      body.light-mode .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 82, 212, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+      }
+      .contact-card {
+        background-color: var(--card-bg-color);
+        border: 1px solid rgba(136, 146, 176, 0.2);
+        border-radius: 12px;
+        padding: 2.5rem;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 10px 30px -15px var(--card-shadow);
+      }
+      .perspective-container {
+        perspective: 1500px;
+      }
+      @media (min-width: 992px) {
+        .contact-card:hover {
+          transform: translateY(-10px) rotateY(3deg) scale(1.02);
+          box-shadow: 0 20px 40px -15px var(--card-shadow);
+        }
+      }
+      .contact-image {
+        max-width: 100%;
+        padding: 0 1.5rem;
+        border-radius: 15px;
+      }
+      .form-floating > .form-control,
+      .form-floating > .form-select {
+        background-color: var(--form-input-bg);
+        border: 1px solid var(--form-input-border);
+        color: var(--text-color);
+      }
+      .form-floating > .form-control:focus,
+      .form-floating > .form-select:focus {
+        background-color: var(--form-input-bg);
+        color: var(--text-color);
+        box-shadow: 0 0 0 0.25rem rgba(var(--primary-color-rgb), 0.25);
+        border-color: var(--primary-color);
+      }
+      .form-floating > label {
+        color: var(--secondary-color);
+      }
+      .form-floating > .form-control:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 30px var(--form-input-bg) inset !important;
+        -webkit-text-fill-color: var(--text-color) !important;
+      }
+      .btn-submit {
+        background-color: var(--primary-color);
+        color: var(--bg-color);
+        font-weight: 700;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        transition: all 0.3s ease;
+      }
+      .btn-submit:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 15px rgba(var(--primary-color-rgb), 0.3);
+        color: var(--bg-color);
+      }
+      .footer {
+        background-color: var(--footer-bg);
+        color: var(--secondary-color);
+        transition: background-color 0.3s ease;
+        padding: 1.5rem 0 1rem 0;
+        border-top: 1px solid rgba(136, 146, 176, 0.2);
+      }
+      .footer .nav-link {
+        color: var(--secondary-color) !important;
+      }
+      .footer .nav-link:hover {
+        color: var(--primary-color) !important;
+      }
+.footer-logo {
+  /* Set width to auto to prevent distortion */
+  width: auto; 
+  height: 48px;
+  transition: transform 0.3s ease;
+}
+
+.footer-logo:hover {
+  transform: scale(1.1);
+}
+      .social-icons a {
+        color: var(--secondary-color);
+        font-size: 1.8rem;
+        transition: color 0.3s ease, transform 0.3s ease;
+      }
+      .social-icons a:hover {
+        color: var(--primary-color);
+        transform: translateY(-3px);
+      }
+      .theme-switcher {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+      }
+      .toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 28px;
+      }
+      .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: var(--toggle-bg);
+        transition: 0.4s;
+        border-radius: 34px;
+      }
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 20px;
+        width: 20px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+      }
+      input:checked + .slider {
+        background-color: var(--toggle-checked-bg);
+      }
+      input:checked + .slider:before {
+        transform: translateX(22px);
+      }
+    </style>
+  </head>
+  <body>
+ <!-- Navbar -->
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+
+    <!-- 1. Navbar Brand (Correctly closed) -->
+    <a class="navbar-brand d-flex align-items-center gap-2" href="/index.html">
+      <img src="/images/logo1.png" alt="learnix-logo" style="height: 40px;">
+    </a>
+
+    <!-- 2. Navbar Toggler -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- 3. Collapsible content, now with justify-content-center -->
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      
+      <!-- 4. Navbar items, ms-auto is removed -->
+      <ul class="navbar-nav text-center">
+        <li class="nav-item"><a class="nav-link" href="/index.html"><i class='bx bx-home-alt me-1'></i>Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="/contributors.html"><i class='bx bxs-graduation me-1'></i>Contributors</a></li>
+        <li class="nav-item"><a class="nav-link active" href="contact.html"><i class='bx bxs-message-dots me-1'></i>Contact</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html"><i class='bx bxs-info-circle me-1'></i>About</a></li>
+      </ul>
+      
+    </div>
+  </div>
+</nav>
+
+    <!-- Main Content Container -->
+    <main class="container py-5">
+      <div class="row align-items-center g-5">
+        <!-- Left Column: Funny Text & Image -->
+        <div class="col-lg-6 text-center text-lg-start">
+          <h1 class="display-4 fw-bold lh-1 mb-3">Drop Us a Line</h1>
+          <p class="lead text-secondary-theme fs-4">
+            Got a brilliant idea? A bug to report? A suggestion for the best
+            pizza topping? Send it our way! We read everything (eventually).
+          </p>
+          <p class="text-secondary-theme">
+            Just please, no requests to do your homework for you. We're a Q&A
+            Hub, not a magic lamp.
+          </p>
+          <img
+            src="https://i.postimg.cc/h49SPV4x/cust-serv-gif-magician.gif"
+            alt="A magical customer service genie"
+            class="img-fluid contact-image mt-4"
+          />
+        </div>
+        <!-- Right Column: Contact Form -->
+        <div class="col-lg-6 perspective-container">
+          <div class="contact-card">
+            <!-- 
+            ========================================================================
+            === IMPORTANT: REPLACE "yourformid" WITH YOUR REAL FORMSPREE FORM ID ===
+            ========================================================================
+          -->
+            <form action="https://formspree.io/f/xzzveneg" method="POST">
+              <h2 class="mb-4 text-center">Send a Message</h2>
+
+              <!-- Secure your form with these hidden inputs -->
+              <input type="hidden" name="_captcha" value="false" />
+              <input
+                type="hidden"
+                name="_redirect"
+                value="https://your-website.com/thank-you.html"
+              />
+              <!-- IMPORTANT: Change this URL -->
+
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <div class="form-floating">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="firstName"
+                      name="First Name"
+                      placeholder="John"
+                      required
+                    />
+                    <label for="firstName">First Name</label>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="form-floating">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="lastName"
+                      name="Last Name"
+                      placeholder="Doe"
+                      required
+                    />
+                    <label for="lastName">Last Name</label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-floating mb-3">
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  name="Email"
+                  placeholder="name@example.com"
+                  required
+                />
+                <label for="email">Email Address</label>
+              </div>
+              <div class="form-floating mb-4">
+                <textarea
+                  class="form-control"
+                  placeholder="Leave a comment here"
+                  id="message"
+                  name="Message"
+                  style="height: 120px"
+                  required
+                ></textarea>
+                <label for="message">Your Message</label>
+              </div>
+              <div class="d-grid">
+                <button class="btn btn-submit" type="submit">
+                  Fire Away! <i class="bx bxs-paper-plane"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Theme Switcher & Footer -->
+    <div class="theme-switcher">
+      <label class="toggle-switch"
+        ><input type="checkbox" id="theme-toggle" /><span class="slider"></span
+      ></label>
+    </div>
+
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row align-items-center text-center text-md-start gy-4">
+        <!-- Logo -->
+        <div class="col-md-3">
+          <a href="/index.html">
+            <img src="/images/logo1.png" alt="Learnix Logo" class="footer-logo">
+          </a>
+        </div>
+        <!-- Nav Links -->
+        <div class="col-md-6">
+          <ul class="nav justify-content-center">
+            <li class="nav-item"><a class="nav-link px-2" href="/index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link px-2" href="/contributors.html">Contributors</a></li>
+            <li class="nav-item"><a class="nav-link px-2" href="contact.html">Contact</a></li>
+            <li class="nav-item"><a class="nav-link px-2" href="about.html">About</a></li>
+          </ul>
+        </div>
+        <!-- Social Icons -->
+        <div class="col-md-3">
+          <div class="d-flex justify-content-center justify-content-md-end social-icons gap-3">
+            <a href="#"><i class='bx bxl-facebook-circle'></i></a>
+            <a href="#"><i class='bx bxl-youtube'></i></a>
+            <a href="#"><i class='bx bxl-github'></i></a>
+          </div>
+        </div>
+      </div>
+      <!-- Copyright -->
+      <div class="text-center pt-3 mt-3 border-top border-secondary border-opacity-25">
+        <p class="mb-1">&copy; 2025 Learnix. All Rights Reserved.</p>
+        <p class="fs-sm mb-0">Crafted with <i class='bx bxs-heart text-danger'></i> and a lot of <i class='bx bxs-coffee-togo'></i> by Shahriar Ahmed Riaz.</p>
+      </div>
+    </div>
+  </footer>
+
+    <!-- JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const themeToggle = document.getElementById("theme-toggle");
+        const body = document.body;
+        const setPrimaryColorRGB = (color) => {
+          const tempDiv = document.createElement("div");
+          tempDiv.style.color = color;
+          document.body.appendChild(tempDiv);
+          const rgbColor = window
+            .getComputedStyle(tempDiv)
+            .color.match(/\d+/g)
+            .join(", ");
+          document.documentElement.style.setProperty(
+            "--primary-color-rgb",
+            rgbColor
+          );
+          document.body.removeChild(tempDiv);
+        };
+        const applyTheme = (theme) => {
+          if (theme === "light") {
+            body.classList.add("light-mode");
+            themeToggle.checked = false;
+            setPrimaryColorRGB("#0052d4");
+          } else {
+            body.classList.remove("light-mode");
+            themeToggle.checked = true;
+            setPrimaryColorRGB("#64ffda");
+          }
+        };
+        const savedTheme = localStorage.getItem("theme") || "dark";
+        applyTheme(savedTheme);
+        themeToggle.addEventListener("change", () => {
+          const newTheme = themeToggle.checked ? "dark" : "light";
+          localStorage.setItem("theme", newTheme);
+          applyTheme(newTheme);
+        });
+      });
+    </script>
+  </body>
+</html>

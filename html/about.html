@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About Us | Learnix</title>
+     <link rel="icon" type="image/x-icon" href="/images/Logo-L.png" sizes="76*76">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Tiro+Bangla:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- External Libraries -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <style>
+    /*
+    ============================================
+    --- 1. VARIABLES & THEME SETUP ---
+    ============================================
+    */
+    :root {
+      /* Dark Theme (Default) */
+      --bg-color: #0a192f;
+      --text-color: #ccd6f6;
+      --heading-color: #e6f1ff;
+      --primary-color: #64ffda;
+      /* A vibrant cyan */
+      --secondary-color: #8892b0;
+      --card-bg-color: #112240;
+      --card-shadow: rgba(2, 12, 27, 0.7);
+      --navbar-bg: rgba(10, 25, 47, 0.85);
+      --footer-bg: #020c1b;
+      --toggle-bg: #8892b0;
+      --toggle-checked-bg: #64ffda;
+    }
+
+    body.light-mode {
+      /* Light Theme */
+      --bg-color: #f0f2f5;
+      --text-color: #33374d;
+      --heading-color: #0d1a2e;
+      --primary-color: #0052d4;
+      /* A strong blue */
+      --secondary-color: #5b6479;
+      --card-bg-color: #ffffff;
+      --card-shadow: rgba(0, 0, 0, 0.1);
+      --navbar-bg: rgba(255, 255, 255, 0.85);
+      --footer-bg: #e9ecef;
+      --toggle-bg: #aeb9cc;
+      --toggle-checked-bg: #0052d4;
+    }
+
+    /*
+    ============================================
+    --- 2. GENERAL STYLES & RESETS ---
+    ============================================
+    */
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Poppins', sans-serif;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: var(--heading-color);
+      font-weight: 700;
+    }
+
+    .text-primary-theme {
+      color: var(--primary-color) !important;
+    }
+
+    .text-secondary-theme {
+      color: var(--secondary-color) !important;
+    }
+
+    /*
+    ============================================
+    --- 3. NAVBAR STYLES ---
+    ============================================
+    */
+    .navbar {
+      background-color: var(--navbar-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: background-color 0.3s ease;
+      border-bottom: 1px solid rgba(136, 146, 176, 0.2);
+    }
+
+    .navbar-brand {
+      color: var(--heading-color) !important;
+      font-weight: 700;
+    }
+
+    .navbar-brand .text-primary-theme {
+      font-weight: 700;
+    }
+
+    .nav-link {
+      color: var(--secondary-color) !important;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--primary-color) !important;
+    }
+
+    .navbar-toggler {
+      border-color: var(--secondary-color);
+    }
+
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(100, 255, 218, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    body.light-mode .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 82, 212, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    /*
+    ============================================
+    --- 4. TOGGLE SWITCHER STYLES ---
+    ============================================
+    */
+    .switch-container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 2rem 0;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .switch-box {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 28px;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: var(--toggle-bg);
+      transition: .4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked+.slider {
+      background-color: var(--toggle-checked-bg);
+    }
+
+    input:checked+.slider:before {
+      transform: translateX(22px);
+    }
+
+    .toggle-icon {
+      font-size: 1.2rem;
+      color: var(--secondary-color);
+    }
+
+    /*
+    ============================================
+    --- 5. MAIN CONTENT & 3D CARD STYLES ---
+    ============================================
+    */
+    .bengali-font {
+      font-family: 'Tiro Bangla', serif;
+    }
+
+    .content-card {
+      background-color: var(--card-bg-color);
+      border: 1px solid rgba(136, 146, 176, 0.2);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: all 0.3s ease-in-out;
+      box-shadow: 0 10px 30px -15px var(--card-shadow);
+      margin-bottom: 2rem;
+    }
+
+    .perspective-container {
+      perspective: 1500px;
+    }
+
+    @media (min-width: 992px) {
+      .content-card:hover {
+        transform: translateY(-10px) rotateX(2deg) rotateY(-3deg) scale(1.03);
+        box-shadow: 0 20px 40px -15px var(--card-shadow);
+      }
+    }
+
+    .card-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+    }
+
+    .feature-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .feature-list li {
+      position: relative;
+      padding-left: 2rem;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      color: var(--text-color);
+    }
+
+    .feature-list li::before {
+      content: '\ea5c';
+      /* boxicons check-double */
+      font-family: 'Boxicons';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--primary-color);
+      font-size: 1.4rem;
+    }
+
+    .hero-image {
+      max-width: 250px;
+      margin: 1rem auto;
+    }
+
+    /*
+    ============================================
+    --- 6. FOOTER STYLES ---
+    ============================================
+    */
+    .footer {
+      background-color: var(--footer-bg);
+      color: var(--secondary-color);
+      transition: background-color 0.3s ease;
+      padding-top: 1.5rem;
+      padding-bottom: 1rem;
+      margin-top: 4rem;
+      border-top: 1px solid rgba(136, 146, 176, 0.2);
+    }
+
+    .footer .nav-link {
+      color: var(--secondary-color) !important;
+    }
+
+    .footer .nav-link:hover {
+      color: var(--primary-color) !important;
+    }
+
+.footer-logo {
+  /* Set width to auto to prevent distortion */
+  width: auto; 
+  height: 48px;
+  transition: transform 0.3s ease;
+}
+
+.footer-logo:hover {
+  transform: scale(1.1);
+}
+
+    .social-icons a {
+      color: var(--secondary-color);
+      font-size: 1.8rem;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      color: var(--primary-color);
+      transform: translateY(-3px);
+    }
+  </style>
+</head>
+
+<body>
+ <!-- Navbar -->
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+
+    <!-- 1. Navbar Brand (Correctly closed) -->
+    <a class="navbar-brand d-flex align-items-center gap-2" href="/index.html">
+      <img src="/images/logo1.png" alt="learnix-logo" style="height: 40px;">
+    </a>
+
+    <!-- 2. Navbar Toggler -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- 3. Collapsible content, now with justify-content-center -->
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      
+      <!-- 4. Navbar items, ms-auto is removed -->
+      <ul class="navbar-nav text-center">
+        <li class="nav-item"><a class="nav-link" href="/index.html"><i class='bx bx-home-alt me-1'></i>Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="/contributors.html"><i class='bx bxs-graduation me-1'></i>Contributors</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html"><i class='bx bxs-message-dots me-1'></i>Contact</a></li>
+        <li class="nav-item"><a class="nav-link active" href="about.html"><i class='bx bxs-info-circle me-1'></i>About</a></li>
+      </ul>
+      
+    </div>
+  </div>
+</nav>
+
+  <!-- Toggle Switchers -->
+  <div class="switch-container">
+    <div class="switch-box">
+      <i class='bx bxs-sun toggle-icon'></i>
+      <label class="toggle-switch">
+        <input type="checkbox" id="theme-toggle">
+        <span class="slider"></span>
+      </label>
+      <i class='bx bxs-moon toggle-icon'></i>
+    </div>
+    <div class="switch-box">
+      <span class="text-secondary-theme">English</span>
+      <label class="toggle-switch">
+        <input type="checkbox" id="lang-toggle">
+        <span class="slider"></span>
+      </label>
+      <span class="text-secondary-theme bengali-font">বাংলা</span>
+    </div>
+  </div>
+
+
+  <!-- Main Content Container (YOUR FUNNY TEXT IS HERE) -->
+  <main class="container main-content mt-4">
+
+    <!-- English Content -->
+    <div class="content-en">
+      <section class="text-center mb-5">
+        <img src="https://i.postimg.cc/TYWZQ6F6/developer.gif" alt="A developer celebrating" class="img-fluid hero-image">
+        <h1 class="display-4">About Learnix</h1>
+        <p class="lead text-secondary-theme fs-4">The place where "I don't know" comes to die a glorious death.</p>
+      </section>
+
+      <div class="row">
+        <!-- Our Mission -->
+        <div class="col-lg-6 mb-4 perspective-container">
+          <div class="content-card h-100">
+            <i class='bx bxs-rocket card-icon'></i>
+            <h2>Our Mission (Should You Choose to Accept It)</h2>
+            <p class="text-secondary-theme">Our mission is to rescue students from the clutches of deadline-induced panic and caffeine-fueled meltdowns. We believe every student deserves a fighting chance, even if that exam is tomorrow and you're just starting Chapter 1. We've got your back!</p>
+          </div>
+        </div>
+
+        <!-- What We Offer -->
+        <div class="col-lg-6 mb-4 perspective-container">
+          <div class="content-card h-100">
+            <i class='bx bxs-magic-wand card-icon'></i>
+            <h2>What We Offer (Besides Moral Support)</h2>
+            <ul class="feature-list">
+              <li><strong>Solved Questions:</strong> So you can see *how* we got the answer, not just copy-paste it. (We see you!)</li>
+              <li><strong>Detailed Notes:</strong> Think of them as cheat sheets, but way more ethical and comprehensive.</li>
+              <li><strong>Slick UI:</strong> So easy to use, you'll have more time for... uh... "extra-curricular" studies.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <!-- Why Choose Us -->
+        <div class="col-lg-6 mb-4 perspective-container">
+          <div class="content-card h-100">
+            <i class='bx bxs-brain card-icon'></i>
+            <h2>Why Choose Us? (The Real Question is, Why Not?)</h2>
+            <ul class="feature-list">
+              <li><strong>Expert-ish Contributors:</strong> Crafted by folks who survived the same courses you're in. They've seen it all.</li>
+              <li><strong>Constantly Updated:</strong> We're always adding new stuff, because professors love changing the syllabus for no reason.</li>
+              <li><strong>Community Powered:</strong> Misery loves company. Join others, ask questions, and realize you're not alone!</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- The Grand Finale -->
+        <div class="col-lg-6 mb-4 perspective-container">
+            <div class="content-card h-100 text-center d-flex flex-column justify-content-center">
+                <i class='bx bxs-party card-icon'></i>
+                <h2>Join the Revolution!</h2>
+                <p class="text-secondary-theme">Thank you for choosing Learnix as your academic co-pilot. Together, let's turn that 'F' into an 'A' for 'Awesome'! <i class='bx bx-wink-smile'></i></p>
+            </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Bengali Content -->
+    <div class="content-bn bengali-font" style="display: none;">
+        <section class="text-center mb-5">
+            <img src="https://i.postimg.cc/TYWZQ6F6/developer.gif" alt="A team celebrating" class="img-fluid hero-image">
+            <h1 class="display-4">Learnix পরিচিতি</h1>
+            <p class="lead text-secondary-theme fs-4">সেই জায়গা, যেখানে "আমি জানি না" কথাটি বিলুপ্ত হয়ে যায়।</p>
+        </section>
+
+        <div class="row">
+        <!-- Our Mission -->
+        <div class="col-lg-6 mb-4 perspective-container">
+          <div class="content-card h-100">
+            <i class='bx bxs-rocket card-icon'></i>
+            <h2>আমাদের মিশন (যদি আপনি গ্রহণ করেন)</h2>
+            <p class="text-secondary-theme">আমাদের লক্ষ্য হলো শিক্ষার্থীদের ডেডলাইনের আতঙ্ক এবং অতিরিক্ত ক্যাফেইনের প্রভাব থেকে উদ্ধার করা। আমরা বিশ্বাস করি, প্রত্যেক ছাত্রছাত্রীর একটি সুযোগ প্রাপ্য, এমনকি যদি পরীক্ষা আগামীকাল হয় এবং আপনি আজ প্রথম অধ্যায় শুরু করেন। আমরা আপনার পাশে আছি!</p>
+          </div>
+        </div>
+
+        <!-- What We Offer -->
+        <div class="col-lg-6 mb-4 perspective-container">
+          <div class="content-card h-100">
+            <i class='bx bxs-magic-wand card-icon'></i>
+            <h2>আমরা কী অফার করি (সহমর্মিতা ছাড়াও)</h2>
+            <ul class="feature-list">
+              <li><strong>সমাধানকৃত প্রশ্ন:</strong> যাতে আপনি দেখতে পারেন উত্তরটি *কীভাবে* এলো, শুধু কপি-পেস্ট করার জন্য নয়। (আমরা সব দেখি!)</li>
+              <li><strong>বিস্তারিত নোট:</strong> এগুলোকে চিট শীট ভাবতে পারেন, তবে অনেক বেশি নৈতিক এবং বিশদ।</li>
+              <li><strong>সহজ ইন্টারফেস:</strong> ব্যবহারে এতটাই সহজ যে আপনি... মানে... "অন্যান্য" পড়াশোনার জন্য আরও বেশি সময় পাবেন।</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- Why Choose Us -->
+        <div class="col-lg-6 mb-4 perspective-container">
+          <div class="content-card h-100">
+            <i class='bx bxs-brain card-icon'></i>
+            <h2>কেন আমাদের বেছে নেবেন? (আসল প্রশ্ন হলো, কেন নয়?)</h2>
+            <ul class="feature-list">
+              <li><strong>বিশেষজ্ঞ কন্ট্রিবিউটর:</strong> তাদের দ্বারা তৈরি যারা আপনার মতো একই কোর্স থেকে বেঁচে ফিরেছে। তারা সব দেখেছে।</li>
+              <li><strong>নিয়মিত আপডেট:</strong> আমরা সর্বদা নতুন জিনিস যোগ করি, কারণ শিক্ষকরা কোনো কারণ ছাড়াই সিলেবাস পরিবর্তন করতে ভালোবাসেন।</li>
+              <li><strong>কমিউনিটি সাপোর্ট:</strong> দুঃখে থাকলে সঙ্গীর খোঁজ মেলে। অন্যদের সাথে যোগ দিন, প্রশ্ন করুন এবং বুঝুন যে আপনি একা নন!</li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- The Grand Finale -->
+        <div class="col-lg-6 mb-4 perspective-container">
+            <div class="content-card h-100 text-center d-flex flex-column justify-content-center">
+                <i class='bx bxs-party card-icon'></i>
+                <h2>বিপ্লবে যোগ দিন!</h2>
+                <p class="text-secondary-theme">Learnix-কে আপনার একাডেমিক সহযাত্রী হিসেবে বেছে নেওয়ার জন্য ধন্যবাদ। চলুন, একসাথে আপনার গ্রেডকে সাফল্যের শিখরে নিয়ে যাই! <i class='bx bx-wink-smile'></i></p>
+            </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row align-items-center text-center text-md-start gy-4">
+        <!-- Logo -->
+        <div class="col-md-3">
+          <a href="/index.html">
+            <img src="/images/logo1.png" alt="Learnix Logo" class="footer-logo">
+          </a>
+        </div>
+        <!-- Nav Links -->
+        <div class="col-md-6">
+          <ul class="nav justify-content-center">
+            <li class="nav-item"><a class="nav-link px-2" href="/index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link px-2" href="/contributors.html">Contributors</a></li>
+            <li class="nav-item"><a class="nav-link px-2" href="contact.html">Contact</a></li>
+            <li class="nav-item"><a class="nav-link px-2" href="about.html">About</a></li>
+          </ul>
+        </div>
+        <!-- Social Icons -->
+        <div class="col-md-3">
+          <div class="d-flex justify-content-center justify-content-md-end social-icons gap-3">
+            <a href="#"><i class='bx bxl-facebook-circle'></i></a>
+            <a href="#"><i class='bx bxl-youtube'></i></a>
+            <a href="#"><i class='bx bxl-github'></i></a>
+          </div>
+        </div>
+      </div>
+      <!-- Copyright -->
+      <div class="text-center pt-3 mt-3 border-top border-secondary border-opacity-25">
+        <p class="mb-1">&copy; 2025 Learnix. All Rights Reserved.</p>
+        <p class="fs-sm mb-0">Crafted with <i class='bx bxs-heart text-danger'></i> and a lot of <i class='bx bxs-coffee-togo'></i> by Shahriar Ahmed Riaz.</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  <!-- Control Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // --- THEME SWITCHER ---
+      const themeToggle = document.getElementById('theme-toggle');
+      const body = document.body;
+
+      const applyTheme = (theme) => {
+        if (theme === 'light') {
+          body.classList.add('light-mode');
+          themeToggle.checked = false;
+        } else {
+          body.classList.remove('light-mode');
+          themeToggle.checked = true;
+        }
+      };
+
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      applyTheme(savedTheme);
+
+      themeToggle.addEventListener('change', () => {
+        const newTheme = themeToggle.checked ? 'dark' : 'light';
+        localStorage.setItem('theme', newTheme);
+        applyTheme(newTheme);
+      });
+
+
+      // --- LANGUAGE SWITCHER ---
+      const langToggle = document.getElementById('lang-toggle');
+      const contentEn = document.querySelector('.content-en');
+      const contentBn = document.querySelector('.content-bn');
+
+      const applyLanguage = (lang) => {
+        if (lang === 'bn') {
+          contentEn.style.display = 'none';
+          contentBn.style.display = 'block';
+          langToggle.checked = true;
+        } else {
+          contentEn.style.display = 'block';
+          contentBn.style.display = 'none';
+          langToggle.checked = false;
+        }
+      };
+
+      // Set initial language (default to English)
+      applyLanguage('en');
+
+      langToggle.addEventListener('change', () => {
+        const newLang = langToggle.checked ? 'bn' : 'en';
+        applyLanguage(newLang);
+      });
+
+    });
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Courses | Learnix</title>
+     <link rel="icon" type="image/x-icon" href="/images/Logo-L.png" sizes="76*76">
+     <!-- Google font -->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Akaya+Telivigala&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- DaisyUI for extra components -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet">
+  <!-- Animate.css for animations -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/dashboard.css">
+
+  <style>
+    :root{
+      --fonte: "Akaya Telivigala", system-ui;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col min-h-screen transition-colors duration-300">
+  <!-- Header -->
+  <header class="bg-white dark:bg-gray-800 shadow-lg sticky top-0 z-50 animate__animated animate__fadeInDown backdrop-blur-md bg-opacity-90 dark:bg-opacity-90">
+    <div class="container mx-auto flex justify-between items-center py-4 px-4 md:px-8">
+      <a href="#" class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent logo-gradient-text"><img src="/images/logo1.png" alt="learnix-logo" class="h-8 w-auto"></a>
+      <nav class="space-x-6 hidden md:flex items-center">
+        <a href="../index.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition">Home</a>
+        <a href="dashboard.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition">Courses</a>
+        <a href="/html/about.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition">About</a>
+        <a href="/contributors.html" class="hover:text-blue-600 dark:hover:text-blue-400 transition">Contributors</a>
+      </nav>
+      <div class="flex items-center gap-4">
+        <!-- Dark Mode Toggle -->
+        <button id="darkModeToggle" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+          <i class="fas fa-moon dark:hidden text-gray-600"></i>
+          <i class="fas fa-sun hidden dark:inline text-yellow-400"></i>
+        </button>
+        <!-- Mobile Menu Button -->
+        <button class="md:hidden flex items-center p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700" id="mobile-menu-btn">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div class="md:hidden bg-white dark:bg-gray-800 border-t dark:border-gray-700" id="mobile-menu" style="display:none;">
+      <nav class="px-4 py-4 space-y-3">
+        <a href="../index.html" class="block py-2 hover:text-blue-600 dark:hover:text-blue-400">Home</a>
+        <a href="#" class="block py-2 hover:text-blue-600 dark:hover:text-blue-400">Courses</a>
+        <a href="#" class="block py-2 hover:text-blue-600 dark:hover:text-blue-400">About</a>
+        <a href="#" class="block py-2 hover:text-blue-600 dark:hover:text-blue-400">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="bg-gradient py-16 animate__animated animate__fadeIn">
+    <div class="container mx-auto px-4 md:px-8 flex flex-col items-center text-center">
+      <h1 class="text-4xl md:text-6xl font-extrabold mb-4 text-white animate__animated animate__fadeInUp">Explore All Courses</h1>
+      <p class="mb-8 text-lg text-white/90 max-w-2xl animate__animated animate__fadeInUp animate__delay-1s">Tired of digging through Messenger groups for old questions and notes? We've got your back. Access all UIU study materials—sorted, searchable, and always available.</p>
+      <div class="w-full max-w-3xl flex flex-col md:flex-row gap-3 animate__animated animate__fadeInUp animate__delay-2s">
+        <input type="text" id="searchInput" class="flex-1 px-4 py-3 rounded-xl bg-white/90 dark:bg-gray-800/90 backdrop-blur text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 border-2 border-transparent focus:border-white focus:outline-none transition" placeholder="Search courses...">
+        <select id="filterSelect" class="px-4 py-3 rounded-xl bg-white/90 dark:bg-gray-800/90 backdrop-blur text-gray-900 dark:text-gray-100 border-2 border-transparent focus:border-white focus:outline-none transition cursor-pointer">
+          <option value="">All Departments</option>
+          <option value="CSE">CSE</option>
+          <option value="EEE">EEE</option>
+          <option value="MATH">MATH</option>
+          <option value="Another">Another</option>
+        </select>
+        <button id="searchBtn" class="px-8 py-3 bg-white text-purple-600 rounded-xl font-semibold hover:bg-gray-100 transform hover:scale-105 transition duration-200 shadow-lg">
+          <i class="fas fa-search mr-2"></i>Search
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Courses Grid -->
+  <main class="flex-1 container mx-auto px-4 md:px-8 py-12">
+    <div id="coursesGrid" class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 animate__animated animate__fadeInUp">
+      <!-- Course cards will be injected here by JS -->
+    </div>
+    <div class="flex justify-center mt-12">
+      <button id="loadMoreBtn" class="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition duration-200 animate__animated animate__fadeInUp">
+        Load More Courses
+      </button>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-gray-800 border-t dark:border-gray-700 mt-12 py-8 animate__animated animate__fadeInUp">
+    <div class="container mx-auto px-4 md:px-8 flex flex-col md:flex-row justify-between items-center">
+      <div class="mb-4 md:mb-0">
+        <span style="font-size: 30px; font-family: var(--fonte);" class="font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Learnix</span> 
+        <span class="text-gray-600 dark:text-gray-400">&copy; 2025. All rights reserved.</span>
+      </div>
+      <div class="flex space-x-6">
+        <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition">Privacy Policy</a>
+        <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition">Terms of Service</a>
+        <a href="../html/contact.html" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

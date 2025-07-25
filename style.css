@@ -1,0 +1,743 @@
+/* ==========================================================================
+   1. Foundational Styles & Variables
+   ========================================================================== */
+
+:root {
+  /* Color Palette */
+  --primary-light: #4c8df7;
+  --primary-dark: #055DFE;
+  --accent: #FFB800;
+  --bg-light: #F8F9FA;
+  --bg-dark: #121212;
+  --card-light: #FFFFFF;
+  --card-dark: #1E1E1E;
+  --text-light: #F8F9FA;
+  --text-dark: #212529;
+  --text-muted-light: #6C757D;
+  --text-muted-dark: #A0AEC0;
+  --border-light: #DEE2E6;
+  --border-dark: #343A40;
+
+  /* Typography */
+  --font-display: 'Goldman', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* UI Elements */
+  --radius: 16px;
+  --shadow-sm: rgba(0, 0, 0, 0.04);
+  --shadow-md: rgba(0, 0, 0, 0.08);
+  --shadow-lg: rgba(5, 93, 254, 0.15);
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  transition: background-color 0.4s, color 0.4s;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+
+p {
+  color: var(--text-muted-light);
+  line-height: 1.6;
+}
+
+section {
+  max-width: 1500px;
+  margin: 4rem auto 0 auto;
+  padding: 3rem 2rem;
+  background-color: var(--card-light);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 24px var(--shadow-sm);
+}
+
+/* ==========================================================================
+   2. Dark Mode Overrides
+   ========================================================================== */
+
+body.dark-mode {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+}
+
+.dark-mode h1, .dark-mode h2, .dark-mode h3 {
+  color: var(--primary-light);
+}
+
+.dark-mode p {
+  color: var(--text-muted-dark);
+}
+
+.dark-mode section {
+  background-color: var(--card-dark);
+  box-shadow: 0 4px 24px var(--shadow-sm);
+}
+
+.dark-mode .navbar {
+  background-color: rgba(30, 30, 30, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-dark);
+}
+
+.dark-mode .navbar-menu li a {
+  color: var(--text-light);
+}
+.dark-mode .navbar-menu li a:hover {
+  color: var(--primary-light);
+}
+
+.dark-mode .hero-cta {
+  background: var(--primary-light);
+  color: var(--text-dark);
+}
+.dark-mode .hero-cta:hover {
+  background: var(--accent);
+}
+
+.dark-mode .feature-card, .dark-mode .course-card, .dark-mode .testimonial-card {
+  background-color: var(--bg-dark);
+  border: 1px solid var(--border-dark);
+}
+
+.dark-mode .feature-icon {
+  background-color: var(--primary-light);
+  color: var(--card-dark);
+}
+
+.dark-mode .testimonial-card span {
+  color: var(--primary-light);
+}
+
+.dark-mode .courses-carousel-section,.dark-mode .investors-section{
+  background-color: #121212;
+}
+
+.dark-mode .investors-track img {
+  filter: grayscale(1) brightness(0.8);
+}
+.dark-mode .investors-track img:hover {
+  filter: grayscale(0) brightness(1);
+}
+
+.dark-mode .courses-carousel-section .singleBox {
+    background-color: var(--card-dark);
+    border: 1px solid var(--border-dark);
+}
+
+.dark-mode .courses-carousel-section .boxTitle {
+    color: var(--text-light);
+}
+
+.dark-mode .explore-course-btn {
+    background-color: transparent;
+    color: var(--primary-light);
+    border-color: var(--primary-light);
+}
+.dark-mode .explore-course-btn:hover {
+    background-color: var(--primary-light);
+    color: var(--bg-dark);
+}
+
+.dark-mode .main-footer {
+  background-color: var(--card-dark);
+  border-top: 1px solid var(--border-dark);
+}
+.dark-mode .footer-links a, .dark-mode .footer-social a {
+  color: var(--text-light);
+}
+.dark-mode .footer-links a:hover, .dark-mode .footer-social a:hover {
+  color: var(--primary-light);
+}
+.dark-mode .footer-bottom p {
+  color: var(--text-muted-dark);
+}
+
+/* Fade animation for theme toggle */
+.fade-theme {
+  animation: fadeTheme 0.5s;
+}
+@keyframes fadeTheme {
+  from { opacity: 0; } to { opacity: 1; }
+}
+
+.navbar-theme-toggle {
+    display: none; /* IMPORTANT: Hide on desktop */
+    position: relative;
+    width: 60px;
+    height: 30px;
+    padding: 0 4px;
+    border: 1px solid var(--border-light);
+    background-color: transparent;
+    border-radius: 50px;
+    color: var(--text-dark);
+    cursor: pointer;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.navbar-theme-toggle:hover {
+    border-color: var(--primary-dark);
+    color: var(--primary-dark);
+}
+
+.dark-mode .navbar-theme-toggle {
+    border-color: var(--border-dark);
+    color: var(--text-light);
+}
+
+.dark-mode .navbar-theme-toggle:hover {
+    border-color: var(--primary-light);
+    color: var(--primary-light);
+}
+
+/* Icons inside the navbar toggle */
+.navbar-theme-toggle .fa-sun,
+.navbar-theme-toggle .fa-moon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    transition: transform 0.4s ease, opacity 0.3s;
+}
+
+.navbar-theme-toggle .fa-moon {
+    left: 8px; /* Initial position for light mode */
+}
+.navbar-theme-toggle .fa-sun {
+    right: 8px; /* Initial position for light mode */
+    transform: translateY(-50%) scale(0);
+    opacity: 0;
+}
+
+body.dark-mode .navbar-theme-toggle .fa-moon {
+    transform: translateY(-50%) scale(0);
+    opacity: 0;
+}
+body.dark-mode .navbar-theme-toggle .fa-sun {
+    transform: translateY(-50%) scale(1);
+    opacity: 1;
+}
+
+
+/* Tablet and below (e.g., max-width: 768px) */
+@media (max-width: 768px) {
+    /* Hide the original floating button to avoid duplicates */
+    .darkmode-awesome-btn {
+        display: none;
+    }
+
+    /* Adjust navbar layout */
+    .navbar-container {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    /* Create the logo + button group */
+    .navbar-logo-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    /* Show the navbar theme toggle */
+    .navbar-theme-toggle {
+        display: flex; /* This makes it visible */
+        align-items: center;
+        justify-content: space-between;
+    }
+  }
+
+
+/* ==========================================================================
+   3. Component Styles
+   ========================================================================== */
+
+/* --- Navbar --- */
+.navbar {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid var(--border-light);
+  transition: var(--transition);
+}
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+}
+.navbar-logo img {
+  height: 48px;
+  width: auto;
+}
+.navbar-menu {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+.navbar-menu li a {
+  color: var(--text-dark);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+.navbar-menu li a:hover {
+  color: var(--primary-dark);
+}
+
+
+/* --- Hero Section --- */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+.hero-content {
+  flex: 1.2;
+}
+.hero-content h1 {
+  font-size: 3.2rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  background: linear-gradient(45deg, var(--primary-dark), var(--primary-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.dark-mode .hero-content h1 {
+    background: linear-gradient(45deg, var(--primary-light), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-content p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+.hero-cta {
+  background: var(--primary-dark);
+  color: var(--card-light);
+  border: none;
+  border-radius: 50px;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 15px var(--shadow-lg);
+  transition: var(--transition);
+}
+.hero-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px var(--shadow-lg);
+  background-color: var(--accent);
+  color: var(--text-dark);
+}
+.hero-image {
+  flex: 1;
+}
+.hero-image img {
+  width: 100%;
+  max-width: 450px;
+  border-radius: var(--radius);
+}
+
+/* --- Features & Courses Sections --- */
+.features h2, .courses h2, .testimonials h2, .investors-title, .carousel-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.features-grid, .courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.feature-card, .course-card {
+  background-color: var(--bg-light);
+  border-radius: var(--radius);
+  padding: 2rem;
+  text-align: center;
+  transition: var(--transition);
+  border: 1px solid var(--border-light);
+}
+.feature-card:hover, .course-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px var(--shadow-md);
+}
+
+.feature-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 1.5rem auto;
+    border-radius: 50%;
+    background-color: var(--primary-dark);
+    color: var(--card-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    transition: var(--transition);
+}
+.feature-card:hover .feature-icon {
+    transform: scale(1.1) rotate(-10deg);
+}
+
+.course-card img {
+  width: 64px;
+  margin-bottom: 1.5rem;
+}
+h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.75rem;
+}
+
+/* --- Testimonials Section --- */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+.testimonial-card {
+  background-color: var(--bg-light);
+  border-radius: var(--radius);
+  padding: 2rem;
+  border: 1px solid var(--border-light);
+  position: relative;
+}
+.testimonial-card::before {
+    content: '\f10d';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 1rem;
+    left: 1.5rem;
+    font-size: 2rem;
+    color: var(--primary-dark);
+    opacity: 0.1;
+}
+.dark-mode .testimonial-card::before {
+    color: var(--primary-light);
+}
+
+.testimonial-card p {
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+.testimonial-card span {
+  display: block;
+  font-weight: 600;
+  font-style: normal;
+  color: var(--primary-dark);
+}
+
+/* --- Investors Marquee & Courses Carousel (Shared full-width style) --- */
+.investors-section, .courses-carousel-section {
+    width: 100%;
+    padding: 3rem 0;
+    background-color: transparent; /* Inherits from body */
+    box-shadow: none;
+    border-radius: 0;
+}
+.investors-marquee, .courses-carousel {
+  overflow: hidden;
+  width: 100%;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+}
+.investors-track, .carousel-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+.investors-track {
+    animation: marquee-scroll-investor 40s linear infinite;
+    gap: 4rem;
+    align-items: center;
+}
+.carousel-track {
+    animation: marquee-scroll-course 60s linear infinite;
+    gap: 1.5rem;
+    padding: 1rem; /* for shadow visibility */
+}
+
+@keyframes marquee-scroll-investor {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes marquee-scroll-course {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+.investors-track img {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(1) opacity(0.7);
+  transition: var(--transition);
+}
+.investors-track img:hover {
+  filter: grayscale(0) opacity(1);
+  transform: scale(1.1);
+}
+
+/* Course Carousel Specific Cards */
+.courses-carousel-section .singleBox {
+    background-color: var(--card-light);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 4px 15px var(--shadow-md);
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+    cursor: pointer;
+    transition: var(--transition);
+    border: 1px solid var(--border-light);
+}
+.courses-carousel-section .singleBox:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 15px 35px var(--shadow-lg);
+    z-index: 10;
+}
+.courses-carousel-section .singleBox img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+.courses-carousel-section .boxTitle {
+    padding: 1.5rem;
+    font-size: 1.1rem;
+    font-family: var(--font-body);
+    font-weight: 600;
+    color: var(--text-dark);
+}
+.explore-course-btn {
+    margin-top: 3rem;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    border: 2px solid var(--primary-dark);
+    background-color: transparent;
+    color: var(--primary-dark);
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: var(--font-display);
+    cursor: pointer;
+    transition: var(--transition);
+}
+.explore-course-btn:hover {
+    background-color: var(--primary-dark);
+    color: var(--card-light);
+    transform: scale(1.05);
+}
+
+.center-btn-container{
+  text-align: center;
+}
+
+/* --- Footer --- */
+.main-footer {
+  background-color: var(--card-light);
+  color: var(--text-dark);
+  padding: 3rem 2rem 1rem 2rem;
+  margin-top: 4rem;
+  border-top: 1px solid var(--border-light);
+}
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.5rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+.dark-mode .footer-logo { color: var(--primary-light); }
+.footer-logo img {
+  width: 100%;
+  height: 48px;
+}
+.footer-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+.footer-links a, .footer-social a {
+  color: var(--text-muted-light);
+  text-decoration: none;
+  transition: var(--transition);
+}
+.footer-links a:hover, .footer-social a:hover {
+  color: var(--primary-dark);
+}
+.footer-social {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 1.5rem;
+}
+.footer-bottom {
+  text-align: center;
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-light);
+}
+.dark-mode .footer-bottom { border-top-color: var(--border-dark); }
+.footer-bottom p { font-size: 0.9rem; }
+
+
+/* ==========================================================================
+   4. Utility & Floating Elements
+   ========================================================================== */
+
+/* --- Dark Mode Floating Button --- */
+.darkmode-awesome-btn {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 999;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2D3748, #1A202C);
+  color: var(--accent);
+  border: none;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: var(--transition);
+  outline: none;
+  overflow: hidden;
+}
+.darkmode-awesome-btn:hover {
+  transform: scale(1.1) rotate(-15deg);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+.darkmode-awesome-btn .fa-sun, .darkmode-awesome-btn .fa-moon {
+    position: absolute;
+    transition: transform 0.4s ease-out, opacity 0.3s;
+}
+.darkmode-awesome-btn .fa-sun {
+    transform: translateY(150%) scale(0.5);
+    opacity: 0;
+}
+body.dark-mode .darkmode-awesome-btn {
+    background: linear-gradient(135deg, var(--accent), #FFD700);
+    color: #1A202C;
+}
+body.dark-mode .darkmode-awesome-btn .fa-moon {
+    transform: translateY(-150%) scale(0.5);
+    opacity: 0;
+}
+body.dark-mode .darkmode-awesome-btn .fa-sun {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+/* Skeleton screen styles will automatically inherit the new variables. No changes needed. */
+
+/* ==========================================================================
+   5. Responsive Styles
+   ========================================================================== */
+@media (max-width: 1024px) {
+  h1 { font-size: 2.8rem; }
+  h2 { font-size: 2rem; }
+  section, .hero { padding: 2rem 1.5rem; }
+  .darkmode-awesome-btn {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+  .navbar-container {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .navbar{
+    position: static;
+    backdrop-filter: none;
+    background: #191b4d;
+background: linear-gradient(90deg, rgba(25, 27, 77, 1) 0%, rgba(74, 74, 161, 1) 100%);
+
+.navbar-menu{
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.navbar-menu li a{
+  color: #fff;
+}
+  }
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+  h1 { font-size: 2.5rem; }
+  .footer-container {
+      flex-direction: column;
+      text-align: center;
+  }
+
+  .darkmode-awesome-btn {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+  .navbar-menu { gap: 1.5rem; }
+  h1 { font-size: 2.2rem; }
+  section { padding: 2rem 1rem; }
+
+  .darkmode-awesome-btn {
+        display: none;
+    }
+
+
+ .footer-links {
+        flex-direction: column; /* Stack the nav links themselves */
+        align-items: center;
+        gap: 1.5rem;            /* Adjust gap for vertical links */
+    }
+
+    .footer-social {
+        margin-top: 1rem; /* Add a bit of space above social icons */
+    }
+  }

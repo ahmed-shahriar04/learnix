@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Electrical Circuits</title>
+  
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    /* General Reset & Body */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      font-family: 'Segoe UI', sans-serif;
+      height: 100%;
+      background: #f3f4f6;
+      color: #333;
+      overflow: hidden; /* Prevent bouncing and scrolling on body */
+    }
+
+        /* --- NEW: Loading Overlay --- */
+    #loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 15px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+    #loading-overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    #loading-status {
+      font-size: 1rem;
+      color: #555;
+    }
+    #progress-bar {
+      width: 80%;
+      max-width: 400px;
+      height: 8px;
+      background: #e0e0e0;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    #progress-bar-inner {
+      width: 0%;
+      height: 100%;
+      background: #0078d4;
+      border-radius: 4px;
+      transition: width 0.4s ease;
+    }
+
+    /* --- NEW: Loading Overlay Text Animation --- */
+    #loading-advice {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #666;
+      height: 20px; /* Reserve space to prevent layout shift */
+      text-align: center;
+      width: 100%;
+      position: relative;
+    }
+    #loading-advice span {
+      position: absolute; /* Stack spans on top of each other */
+      width: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+    #loading-advice span.visible {
+      opacity: 1;
+    }
+
+
+    /* --- Sidebar & Overlay --- */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -300px; /* Hidden by default */
+      width: 300px;
+      height: 100%;
+      background: #fff;
+      z-index: 1001;
+      box-shadow: 4px 0 15px rgba(0,0,0,0.1);
+      transition: left 0.3s ease-in-out;
+      display: flex;
+      flex-direction: column;
+    }
+    .sidebar.show {
+      left: 0;
+    }
+    .sidebar h2 {
+      font-size: 1.2rem;
+      padding: 18px 20px;
+      border-bottom: 1px solid #eee;
+      color: #0078d4;
+      flex-shrink: 0;
+    }
+    #pdf-list {
+      list-style: none;
+      overflow-y: auto;
+      flex-grow: 1;
+    }
+    #pdf-list li {
+      padding: 0; /* Let the content inside define padding */
+      cursor: pointer;
+      border-bottom: 1px solid #f0f0f0;
+      transition: background-color 0.2s;
+      font-size: 0.9rem;
+    }
+    #pdf-list li:hover, #pdf-list li.active {
+      background-color: #eaf5ff;
+      color: #005a9e;
+      font-weight: 600;
+    }
+    /* Style for links in the sidebar */
+    #pdf-list li.external-link a {
+        text-decoration: none;
+        color: #3367d6; /* Different color for links */
+        display: block;
+        padding: 15px 20px;
+    }
+    #pdf-list li.external-link:hover {
+        background-color: #f1f1f1;
+    }
+    #pdf-list li:not(.external-link) {
+      padding: 15px 20px; /* Restore padding for non-link items */
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+    .overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* --- Main Layout --- */
+    .main-content {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* --- Toolbar --- */
+    .toolbar {
+      background: #ffffff;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #ddd;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      flex-shrink: 0; /* Prevent toolbar from shrinking */
+      z-index: 999;
+    }
+    .toolbar .left, .toolbar .right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .toolbar .center {
+      flex-grow: 1;
+      text-align: center;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      padding: 0 10px;
+    }
+    .toolbar h1 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #0078d4;
+    }
+    .toolbar button {
+      background-color: transparent;
+      color: #333;
+      border: none;
+      padding: 8px;
+      font-size: 20px; /* Adjusted for icon */
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+      line-height: 1;
+    }
+    .toolbar button:hover {
+      background-color: #f0f0f0;
+    }
+
+    /* --- PDF Viewer Area --- */
+    .pdf-viewer {
+      flex-grow: 1;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-y: auto;
+      touch-action: pan-y;
+    }
+    .placeholder {
+      color: #999;
+      font-size: 16px;
+      padding: 40px;
+      text-align: center;
+      margin: auto;
+    }
+    .pdf-page {
+      margin-bottom: 25px;
+      background: #fff;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+    .pdf-page canvas {
+      display: block;
+    }
+    .loading-placeholder {
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #aaa;
+      font-size: 18px;
+    }
+
+    /* --- Mobile & Responsive Adjustments --- */
+    .mobile-only {
+      display: none;
+    }
+    #pdf-select {
+      max-width: 150px;
+      padding: 8px 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background-color: white;
+    }
+
+    @media (max-width: 768px) {
+      #burger-menu {
+        display: none;
+      }
+      .mobile-only {
+        display: block;
+      }
+      .toolbar .center h1 {
+        font-size: 16px;
+      }
+      .pdf-viewer {
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NEW: Loading Overlay HTML -->
+  <div id="loading-overlay">
+    <div id="progress-bar">
+      <div id="progress-bar-inner"></div>
+    </div>
+    <p id="loading-status">Loading...</p>
+    <!-- NEW: Animated text container -->
+    <div id="loading-advice">
+  <span>🐢 Loading... slower than your professor’s lectures</span>
+  <span>🧠 Decoding ancient digital hieroglyphs...</span>
+  <span>📚 Pretending to work hard...</span>
+  <span>🔍 Searching for logic in cloud...</span>
+  <span>💾 Asking the PDF politely to open</span>
+  <span>🚀 Still faster than waiting for semester results!</span>
+  <span>⏳ 2 minutes feels like forever, doesn’t it?</span>
+  <span>🤖 Converting binary into boredom...</span>
+</div>
+
+  </div>
+
+  <!-- Sidebar for PDF List (Desktop) -->
+  <aside id="pdf-sidebar" class="sidebar">
+    <h2>PDF & Sources</h2>
+    <ul id="pdf-list"></ul>
+  </aside>
+  <div id="sidebar-overlay" class="overlay"></div>
+
+  <!-- Main Content Wrapper -->
+  <div class="main-content">
+    <!-- Toolbar -->
+    <header class="toolbar">
+      <div class="left">
+        <button id="burger-menu" title="Toggle PDF List">☰</button>
+        <!-- Mobile Dropdown -->
+        <select id="pdf-select" class="mobile-only"></select>
+      </div>
+      <div class="center">
+        <h1 id="pdf-title">Electrical Circuits</h1>
+      </div>
+      <div class="right">
+        <button id="fullscreen" title="Full Screen"><i class="fa-solid fa-maximize"></i></button>
+      </div>
+    </header>
+
+    <!-- PDF Viewer -->
+    <main id="pdf-viewer" class="pdf-viewer">
+      <p class="placeholder">Select a PDF from the menu to begin.</p>
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+  
+  <script>
+    // Set workerSrc to point to the PDF.js worker file for performance.
+    pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js`;
+
+    // --- DOM ELEMENTS ---
+    const viewer = document.getElementById("pdf-viewer");
+    const sidebar = document.getElementById("pdf-sidebar");
+    const overlay = document.getElementById("sidebar-overlay");
+    const burgerMenu = document.getElementById("burger-menu");
+    const pdfList = document.getElementById("pdf-list");
+    const pdfSelect = document.getElementById("pdf-select");
+    const pdfTitle = document.getElementById("pdf-title");
+    const fullscreenBtn = document.getElementById("fullscreen");
+    // Loading animation elements
+    const loadingOverlay = document.getElementById("loading-overlay");
+    const loadingStatus = document.getElementById("loading-status");
+    const progressBarInner = document.getElementById("progress-bar-inner");
+    // NEW: Text animation element
+    const loadingAdvice = document.getElementById("loading-advice");
+
+    // --- STATE ---
+    let pdfDoc = null;
+    let scale = 1.5;
+    const pageStates = {};
+    let currentPdfUrl = null;
+    // Loading timer state
+    let loadingStartTime = null;
+    let loadingTimerInterval = null;
+    // NEW: Text animation state
+    let adviceTimerInterval = null;
+    let adviceSpans = [];
+    let currentAdviceIndex = 0;
+
+    // --- PDF DATA ---
+    const PDF_FILES = [
+      {
+        name: "EC Note by Riaz",
+        url: "https://corsproxy.io/?https://drive.google.com/uc?export=download&id=1aHbKuiZ_jobevuwBmzBFvEJJbi9bbeMh",
+      },
+      {
+        name: "EC Final qn solved by Riaz",
+        url: "https://corsproxy.io/?https://drive.google.com/uc?export=download&id=1o4a_ngWpJim68mDVaUKorxC8n02oP8DZ",
+      },
+      {
+        name: "EC MID qn solved by Riaz",
+        url: "https://corsproxy.io/?https://drive.google.com/uc?export=download&id=1pPFPiq5FOqG7zjOZ5tLAjHnEOQhYKnai",
+      },
+      {
+        name: 'Learnix Resources <i class="fa-solid fa-arrow-up-right-from-square fa-xs"></i>',
+        url: 'https://drive.google.com/drive/folders/156BDm04A_mqsTGlK-DrXmTJ8JTYAT6Mn?usp=drive_link',
+        type: 'link'
+      },
+      {
+        name: 'Previous Questions & Solution by Nurul Alam Ador <i class="fa-solid fa-arrow-up-right-from-square fa-xs"></i>',
+        url: 'https://nurulalamador.github.io/UIUQuestionBank/course.html?id=EEE2113',
+        type: 'link'
+      }
+    ];
+
+    // --- INITIALIZATION ---
+    window.addEventListener("DOMContentLoaded", () => {
+      populatePdfList();
+      populatePdfDropdown();
+      setupEventListeners();
+      // NEW: Get span elements for animation
+      adviceSpans = loadingAdvice.querySelectorAll('span');
+    });
+
+    // --- UI POPULATION ---
+    function populatePdfList() {
+      pdfList.innerHTML = "";
+      PDF_FILES.forEach(item => {
+        const li = document.createElement("li");
+        if (item.type === 'link') {
+          li.classList.add('external-link');
+          const a = document.createElement('a');
+          a.href = item.url;
+          a.target = '_blank';
+          a.rel = 'noopener noreferrer';
+          a.innerHTML = item.name;
+          li.appendChild(a);
+        } else {
+          li.innerHTML = item.name;
+          li.dataset.url = item.url;
+        }
+        pdfList.appendChild(li);
+      });
+    }
+
+    function populatePdfDropdown() {
+      pdfSelect.innerHTML = '<option value="" disabled selected>Select an item...</option>';
+      PDF_FILES.forEach(item => {
+        const option = document.createElement("option");
+        option.value = item.url;
+        const cleanName = item.name.replace(/<[^>]*>?/gm, '');
+        if (item.type === 'link') {
+            option.innerHTML = `→ ${cleanName}`;
+            option.dataset.isLink = 'true';
+        } else {
+            option.textContent = cleanName;
+        }
+        pdfSelect.appendChild(option);
+      });
+    }
+
+    // --- EVENT LISTENERS ---
+    function setupEventListeners() {
+      burgerMenu.addEventListener("click", toggleSidebar);
+      overlay.addEventListener("click", toggleSidebar);
+
+      pdfList.addEventListener("click", (e) => {
+        const targetLi = e.target.closest('li');
+        if (targetLi && !targetLi.classList.contains('external-link')) {
+            const url = targetLi.dataset.url;
+            if (url && url !== currentPdfUrl) {
+                loadPDF(url);
+                toggleSidebar();
+            }
+        }
+      });
+
+      pdfSelect.addEventListener("change", (e) => {
+        const selectedOption = e.target.options[e.target.selectedIndex];
+        const isLink = selectedOption.dataset.isLink === 'true';
+        const url = e.target.value;
+        if (isLink) {
+            window.open(url, '_blank', 'noopener,noreferrer');
+            e.target.value = currentPdfUrl || '';
+        } else if (url && url !== currentPdfUrl) {
+            loadPDF(url);
+        }
+      });
+
+      fullscreenBtn.addEventListener("click", () => {
+        const elem = document.documentElement;
+        if (!document.fullscreenElement) {
+            if (elem.requestFullscreen) elem.requestFullscreen();
+        } else {
+            if (document.exitFullscreen) document.exitFullscreen();
+        }
+      });
+
+      let initialDistance = null;
+      viewer.addEventListener("touchstart", (e) => {
+        if (e.touches.length === 2) initialDistance = getDistance(e.touches[0], e.touches[1]);
+      });
+      viewer.addEventListener("touchmove", (e) => {
+        if (e.touches.length === 2 && initialDistance) {
+          e.preventDefault();
+          const currentDistance = getDistance(e.touches[0], e.touches[1]);
+          const newScale = scale * (currentDistance / initialDistance);
+          updateScale(Math.min(Math.max(newScale, 0.5), 5));
+          initialDistance = currentDistance;
+        }
+      }, { passive: false });
+      viewer.addEventListener("touchend", () => { initialDistance = null; });
+    }
+
+    // --- NEW: Loading Animation Functions ---
+    function startLoadingAnimation() {
+      loadingOverlay.classList.add('show');
+      progressBarInner.style.width = '0%';
+      loadingStartTime = performance.now();
+      
+      loadingTimerInterval = setInterval(() => {
+        const elapsedTime = ((performance.now() - loadingStartTime) / 1000).toFixed(1);
+        loadingStatus.textContent = `Fetching PDF... (${elapsedTime}s)`;
+      }, 100);
+
+      // --- NEW: Start text animation ---
+      if (adviceTimerInterval) clearInterval(adviceTimerInterval);
+      adviceSpans.forEach(span => span.classList.remove('visible'));
+      currentAdviceIndex = 0;
+      
+      const showNextAdvice = () => {
+        adviceSpans.forEach(span => span.classList.remove('visible'));
+        if (adviceSpans[currentAdviceIndex]) {
+          adviceSpans[currentAdviceIndex].classList.add('visible');
+        }
+        currentAdviceIndex = (currentAdviceIndex + 1) % adviceSpans.length;
+      };
+
+      // Show the first one after a short delay, then cycle
+      setTimeout(() => {
+        showNextAdvice();
+        adviceTimerInterval = setInterval(showNextAdvice, 4000);
+      }, 1500);
+    }
+
+    function finishLoadingAnimation() {
+      clearInterval(loadingTimerInterval);
+      clearInterval(adviceTimerInterval); // Stop text animation
+      progressBarInner.style.width = '100%';
+      const duration = ((performance.now() - loadingStartTime) / 1000).toFixed(2);
+      loadingStatus.textContent = `Loaded in ${duration} seconds!`;
+
+      setTimeout(() => {
+        loadingOverlay.classList.remove('show');
+      }, 500);
+    }
+
+    function hideLoadingAnimationOnError() {
+        clearInterval(loadingTimerInterval);
+        clearInterval(adviceTimerInterval); // Stop text animation
+        loadingOverlay.classList.remove('show');
+    }
+
+    // --- UI & STATE HELPERS ---
+    function toggleSidebar() {
+      sidebar.classList.toggle("show");
+      overlay.classList.toggle("show");
+    }
+    function updateActivePdfUI(url) {
+      currentPdfUrl = url;
+      const pdfItem = PDF_FILES.find(p => p.url === url && p.type !== 'link');
+      pdfTitle.textContent = pdfItem ? pdfItem.name.replace(/<[^>]*>?/gm, '') : "Digital Logic Design";
+      document.querySelectorAll("#pdf-list li").forEach(li => {
+        li.classList.toggle("active", li.dataset.url === url);
+      });
+      if (pdfSelect.value !== url) {
+        pdfSelect.value = url;
+      }
+    }
+
+    // --- PDF RENDERING CORE ---
+    function loadPDF(url) {
+      startLoadingAnimation(); // Start the loading animation
+      updateActivePdfUI(url);
+
+      const loadingTask = pdfjsLib.getDocument(url);
+      loadingTask.promise.then(pdf => {
+        pdfDoc = pdf;
+        viewer.innerHTML = ""; // Clear placeholder
+        
+        // Update loading progress
+        clearInterval(loadingTimerInterval); // Stop the first timer
+        const elapsedTime = ((performance.now() - loadingStartTime) / 1000).toFixed(1);
+        loadingStatus.textContent = `Rendering... (${elapsedTime}s)`;
+        progressBarInner.style.width = '30%';
+
+        // Calculate scale and render pages
+        return pdf.getPage(1).then(page => {
+          const viewport = page.getViewport({ scale: 1 });
+          const containerWidth = viewer.clientWidth;
+          const padding = window.innerWidth <= 768 ? 20 : 40;
+          const effectiveWidth = containerWidth - padding; 
+          scale = effectiveWidth / viewport.width;
+          
+          renderPlaceholders();
+          observePages();
+
+          // Force render the first page immediately and finish animation when it's done
+          const renderTask = renderPage(1, true); 
+          return renderTask; 
+        });
+
+      }).catch(error => {
+        console.error("Error loading PDF from URL:", url, error);
+        viewer.innerHTML = `<p class="placeholder">Error loading PDF. Please check the file link and its permissions (CORS policy).</p>`;
+        hideLoadingAnimationOnError(); // Hide loading animation on error
+      });
+    }
+
+    function renderPlaceholders() {
+      Object.keys(pageStates).forEach(key => delete pageStates[key]);
+      for (let i = 1; i <= pdfDoc.numPages; i++) {
+        const container = document.createElement("div");
+        container.className = "pdf-page";
+        container.id = `page-${i}`;
+        container.dataset.pageNumber = i;
+        const loadingText = document.createElement("div");
+        loadingText.className = "loading-placeholder";
+        loadingText.innerText = `Page ${i}`; 
+        container.appendChild(loadingText);
+        viewer.appendChild(container);
+        pageStates[i] = false;
+      }
+    }
+
+    function renderPage(pageNum, isFinalStep = false) {
+      if (!pdfDoc || pageStates[pageNum]) return Promise.resolve();
+      pageStates[pageNum] = true;
+
+      return pdfDoc.getPage(pageNum).then(page => {
+        const viewport = page.getViewport({ scale });
+        const canvas = document.createElement("canvas");
+        const context = canvas.getContext("2d");
+        const outputScale = window.devicePixelRatio || 1;
+        canvas.width = Math.floor(viewport.width * outputScale);
+        canvas.height = Math.floor(viewport.height * outputScale);
+        canvas.style.width = `${Math.floor(viewport.width)}px`;
+        canvas.style.height = `${Math.floor(viewport.height)}px`;
+        const transform = outputScale !== 1 ? [outputScale, 0, 0, outputScale, 0, 0] : null;
+        const renderContext = { canvasContext: context, viewport, transform };
+        const pageContainer = document.getElementById(`page-${pageNum}`);
+        if (pageContainer) {
+            pageContainer.innerHTML = "";
+            pageContainer.appendChild(canvas);
+        }
+        
+        const renderTask = page.render(renderContext);
+        if (isFinalStep) {
+            renderTask.promise.then(() => {
+                finishLoadingAnimation(); // Finish when the first page is rendered
+            });
+        }
+        return renderTask.promise;
+      });
+    }
+
+    function observePages() {
+      const options = { root: viewer, rootMargin: "200px", threshold: 0 };
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const pageNum = parseInt(entry.target.dataset.pageNumber);
+            renderPage(pageNum); // Lazy load other pages
+          }
+        });
+      }, options);
+      document.querySelectorAll(".pdf-page").forEach(page => observer.observe(page));
+    }
+
+    function updateScale(newScale) {
+      if (!pdfDoc || Math.abs(scale - newScale) < 0.01) return;
+      scale = newScale;
+      for (let i = 1; i <= pdfDoc.numPages; i++) {
+        const pageContainer = document.getElementById(`page-${i}`);
+        if (!pageContainer) continue;
+        const rect = pageContainer.getBoundingClientRect();
+        const isVisible = rect.bottom >= 0 && rect.top <= window.innerHeight;
+        if (isVisible) {
+           pageStates[i] = false;
+           renderPage(i);
+        } else if (pageStates[i]) {
+           pageContainer.innerHTML = `<div class="loading-placeholder">Page ${i}</div>`;
+           pageStates[i] = false;
+        }
+      }
+    }
+
+    // --- UTILITIES ---
+    function getDistance(t1, t2) {
+      const dx = t2.clientX - t1.clientX;
+      const dy = t2.clientY - t1.clientY;
+      return Math.sqrt(dx * dx + dy * dy);
+    }
+  </script>
+</body>
+</html>

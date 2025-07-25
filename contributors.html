@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contributors | Learnix</title>
+  <link rel="icon" type="image/png" href="/images/Logo-L.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Audiowide&family=Delius+Swash+Caps&family=Iceberg&display=swap" rel="stylesheet">
+  
+  <!-- External Libraries -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <!-- Font Awesome for social icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+   <style>
+    :root {
+      --bg-color: #0a192f;
+      --text-color: #ccd6f6;
+      --heading-color: #e6f1ff;
+      --primary-color: #64ffda;
+      --secondary-color: #8892b0;
+      --card-bg-color: #112240;
+      --card-border: #2c446e;
+      --card-shadow: rgba(2, 12, 27, 0.7);
+      --navbar-bg: rgba(10, 25, 47, 0.85);
+      --footer-bg: #020c1b;
+      --toggle-bg: #8892b0;
+      --toggle-checked-bg: #64ffda;
+    }
+
+    body.light-mode {
+      --bg-color: #f0f2f5;
+      --text-color: #33374d;
+      --heading-color: #0d1a2e;
+      --primary-color: #0052d4;
+      --secondary-color: #5b6479;
+      --card-bg-color: #ffffff;
+      --card-border: #dee2e6;
+      --card-shadow: rgba(0, 0, 0, 0.1);
+      --navbar-bg: rgba(255, 255, 255, 0.85);
+      --footer-bg: #e9ecef;
+      --toggle-bg: #aeb9cc;
+      --toggle-checked-bg: #0052d4;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Poppins', sans-serif;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    main {
+      flex-grow: 1;
+    }
+
+    .navbar {
+      background-color: var(--navbar-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: background-color 0.3s ease;
+      border-bottom: 1px solid rgba(136, 146, 176, 0.2);
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+
+    .navbar-brand {
+      color: var(--heading-color) !important;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem; /* Adds space between logo and text */
+    }
+
+    .navbar-brand img {
+      height: 48px;
+    }
+
+    .nav-link {
+      color: var(--secondary-color) !important;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--primary-color) !important;
+    }
+
+    .navbar-toggler {
+      border-color: var(--secondary-color);
+    }
+
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(100, 255, 218, 0.8)' stroke-linecap='round' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    body.light-mode .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 82, 212, 0.8)' stroke-linecap='round' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    .title {
+      color: var(--heading-color);
+      font-family: "Audiowide", sans-serif;
+      font-size: 3rem;
+      text-align: center;
+      margin: 3rem 0 2rem 0;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-container {
+      padding: 2rem 0;
+      perspective: 2000px;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+
+    .singleCard {
+      background-color: var(--card-bg-color);
+      border: 1px solid var(--card-border);
+      border-radius: 15px;
+      width: 320px;
+      padding: 1.5rem;
+      box-shadow: 0 10px 30px -15px var(--card-shadow);
+      transition: all 0.3s ease-in-out;
+      text-align: center;
+      color: var(--text-color);
+    }
+
+    .singleCard:hover {
+      transform: translateY(-10px) rotateX(5deg) rotateY(-5deg) scale(1.05);
+      box-shadow: 0 20px 40px -15px var(--card-shadow);
+    }
+
+    .singleCard img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid var(--primary-color);
+      margin-bottom: 1rem;
+    }
+
+    .details .name {
+      font-family: "Delius Swash Caps", cursive;
+      font-size: 1.4rem;
+      color: var(--heading-color);
+    }
+
+    .details .work {
+      font-family: "Iceberg", sans-serif;
+      color: var(--secondary-color);
+      font-size: 1.2rem;
+    }
+
+    .links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .links a {
+      color: var(--bg-color);
+      background: var(--primary-color);
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+    }
+
+    .links a:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 15px rgba(var(--primary-color-rgb), 0.4);
+    }
+
+    .theme-switcher {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 28px;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: var(--toggle-bg);
+      transition: 0.4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: var(--toggle-checked-bg);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(22px);
+    }
+
+    .footer {
+      background-color: var(--footer-bg);
+      color: var(--secondary-color);
+      padding: 1.5rem 0 1rem 0;
+      border-top: 1px solid rgba(136, 146, 176, 0.2);
+    }
+
+    .footer .nav-link {
+      color: var(--secondary-color) !important;
+    }
+
+    .footer .nav-link:hover {
+      color: var(--primary-color) !important;
+    }
+
+.footer-logo {
+  /* Set width to auto to prevent distortion */
+  width: auto; 
+  height: 48px;
+  transition: transform 0.3s ease;
+}
+
+.footer-logo:hover {
+  transform: scale(1.1);
+}
+
+    .social-icons a {
+      color: var(--secondary-color);
+      font-size: 1.8rem;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      color: var(--primary-color);
+      transform: translateY(-3px);
+    }
+
+    @media (max-width: 768px) {
+      .title {
+        font-size: 2.5rem;
+      }
+      /* Center nav items on medium screens and below */
+      .navbar-nav {
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+    }
+   </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <!-- FIX: Added brand text, proper closing tag, and alt text -->
+      <a class="navbar-brand fs-4" href="/index.html">
+        <img src="/images/logo1.png" alt="Learnix Logo">
+        <span style="font-weight: 500; font-size: 18px;">University</span>
+      </a>
+      <!-- FIX: Moved toggler button outside of the <a> tag -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- FIX: Moved collapsible div outside of the <a> tag -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <!-- FIX: Changed ms-auto to mx-auto to center nav items in available space on desktop -->
+        <ul class="navbar-nav mx-auto text-center">
+          <li class="nav-item"><a class="nav-link" href="/index.html"><i class='bx bx-home-alt me-1'></i>Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/contributors.html"><i class='bx bxs-graduation me-1'></i>Contributors</a></li>
+          <li class="nav-item"><a class="nav-link" href="/html/contact.html"><i class='bx bxs-message-dots me-1'></i>Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="/html/about.html"><i class='bx bxs-info-circle me-1'></i>About</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    <h1 class="title">Meet The Team</h1>
+    <div class="container card-container">
+        <div class="cards">
+
+            <div class="singleCard">
+                <img src="https://i.postimg.cc/WbSb1HtW/IMG-0993-1.jpg" alt="Photo of Shahriar Ahmed Riaz">
+                <div class="details">
+                    <p class="name">Shahriar Ahmed Riaz</p>
+                    <p class="work">Developer & Contributor</p>
+                    <p class="work">ID: 0112330203</p>
+                </div>
+                <div class="links">
+                    <a href="https://www.facebook.com/shahriarahmed23" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.linkedin.com/in/shahriarahmedriaz/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="/portfolio/Riaz/riaz.html" aria-label="Portfolio"><i class="fas fa-user-circle"></i></a>
+                </div>
+            </div>
+
+            <div class="singleCard">
+                <img src="https://i.postimg.cc/6Qc1z8Qp/style-akash.jpg" alt="Photo of Akash Mondal">
+                <div class="details">
+                    <p class="name">Akash Mondal</p>
+                    <p class="work">Contributor</p>
+                    <p class="work">ID: 0112330211</p>
+                </div>
+                <div class="links">
+                    <a href="https://www.facebook.com/akash.akashmondal.7902" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.linkedin.com/in/akashmondal" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="/portfolio/Akash/akash.html" aria-label="Portfolio"><i class="fas fa-user-circle"></i></a>
+                </div>
+            </div>
+
+            <div class="singleCard">
+                <img src="https://i.postimg.cc/jjn4nCJ1/Whats-App-Image-2024-10-23-at-21-32-07-9fce452a.jpg" alt="Photo of Tameem Mehedi Prince">
+                <div class="details">
+                    <p class="name">Tameem Mehedi Prince</p>
+                    <p class="work">Contributor</p>
+                    <p class="work">ID: 0112330604</p>
+                </div>
+                <div class="links">
+                    <a href="https://www.facebook.com/tmprince0" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.linkedin.com/in/tameem-mehedi-prince-8b1b70299/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://preview--prince-3d-cosmos.lovable.app/" aria-label="Portfolio"><i class="fas fa-user-circle"></i></a>
+                </div>
+            </div>
+
+            <div class="singleCard">
+                <img src="/images/ladyUser.svg" alt="Photo of Tameem Mehedi Prince">
+                <div class="details">
+                    <p class="name">Afrin Fatema</p>
+                    <p class="work">Contributor</p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+  </main>
+
+  <!-- Theme Switcher -->
+  <div class="theme-switcher">
+    <label class="toggle-switch">
+        <input type="checkbox" id="theme-toggle">
+        <span class="slider"></span>
+    </label>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row align-items-center text-center text-md-start gy-4">
+        <!-- Logo -->
+        <div class="col-md-3">
+          <a href="/index.html">
+            <img src="/images/logo1.png" alt="Learnix Logo" class="footer-logo">
+          </a>
+        </div>
+        <!-- Nav Links -->
+        <div class="col-md-6">
+          <ul class="nav justify-content-center">
+            <li class="nav-item"><a class="nav-link px-2" href="/index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link px-2" href="/contributors.html">Contributors</a></li>
+            <li class="nav-item"><a class="nav-link px-2" href="contact.html">Contact</a></li>
+            <li class="nav-item"><a class="nav-link px-2" href="about.html">About</a></li>
+          </ul>
+        </div>
+        <!-- Social Icons -->
+        <div class="col-md-3">
+          <div class="d-flex justify-content-center justify-content-md-end social-icons gap-3">
+            <a href="#"><i class='bx bxl-facebook-circle'></i></a>
+            <a href="#"><i class='bx bxl-youtube'></i></a>
+            <a href="#"><i class='bx bxl-github'></i></a>
+          </div>
+        </div>
+      </div>
+      <!-- Copyright -->
+      <div class="text-center pt-3 mt-3 border-top border-secondary border-opacity-25">
+        <p class="mb-1">&copy; 2025 Learnix. All Rights Reserved.</p>
+        <p class="fs-sm mb-0">Crafted with <i class='bx bxs-heart text-danger'></i> and a lot of <i class='bx bxs-coffee-togo'></i> by Shahriar Ahmed Riaz.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const themeToggle = document.getElementById('theme-toggle');
+      const body = document.body;
+
+      // This function helps us get the RGB values for the box-shadow color
+      const setPrimaryColorRGB = (color) => {
+        const tempDiv = document.createElement('div');
+        tempDiv.style.color = color;
+        document.body.appendChild(tempDiv);
+        const rgbColor = window.getComputedStyle(tempDiv).color.match(/\d+/g).join(', ');
+        document.documentElement.style.setProperty('--primary-color-rgb', rgbColor);
+        document.body.removeChild(tempDiv);
+      };
+      
+      const applyTheme = (theme) => {
+        if (theme === 'light') {
+          body.classList.add('light-mode');
+          themeToggle.checked = false;
+          setPrimaryColorRGB('#0052d4'); // Light theme primary color
+        } else {
+          body.classList.remove('light-mode');
+          themeToggle.checked = true;
+          setPrimaryColorRGB('#64ffda'); // Dark theme primary color
+        }
+      };
+
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      applyTheme(savedTheme);
+
+      themeToggle.addEventListener('change', () => {
+        const newTheme = themeToggle.checked ? 'dark' : 'light';
+        localStorage.setItem('theme', newTheme);
+        applyTheme(newTheme);
+      });
+    });
+  </script>
+
+</body>
+</html>
