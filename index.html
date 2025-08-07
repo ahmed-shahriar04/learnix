@@ -1,244 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learnix | University</title>
-     <link rel="icon" type="image/x-icon" href="/images/Logo-L.png" sizes="76*76">
-     
-    <link rel="stylesheet" href="style.css">
-    <!-- Font Awesome (already included) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learnix | University</title>
+  <link rel="icon" type="image/x-icon" href="/images/Logo-L.png" sizes="76x76">
+
+  <!-- Preload Fonts -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" as="style" onload="this.rel='stylesheet'">
+  <noscript>
     <link href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- AOS Library -->
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  </noscript>
+
+  <!-- Preload Hero Image -->
+  <link rel="preload" as="image" href="/images/poster02.png">
+
+  <!-- Font Awesome (defer load) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" media="print" onload="this.media='all'">
+
+  <!-- AOS Library (defer load) -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" media="print" onload="this.media='all'">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <div class="navbar-logo-container">
+        <a href="#" class="navbar-logo" data-aos="fade-down" data-aos-duration="1500">
+          <img src="/images/logo1.png" alt="Logo" width="48" height="48" loading="eager">
+        </a>
+        <button id="navbarDarkModeBtn" class="navbar-theme-toggle" aria-label="Toggle dark mode">
+          <i class="fa-solid fa-moon"></i>
+          <i class="fa-solid fa-sun"></i>
+        </button>
+      </div>
+      <ul class="navbar-menu">
+        <li data-aos="fade-down" data-aos-duration="2000"><a href="/contributors.html">Contributors</a></li>
+        <li data-aos="fade-down" data-aos-duration="2500"><a href="/html/dashboard.html">Courses</a></li>
+        <li data-aos="fade-down" data-aos-duration="3000"><a href="/html/about.html">About</a></li>
+        <li data-aos="fade-down" data-aos-duration="3000"><a href="/html/contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="navbar-container">
-            <div class="navbar-logo-container">
-            <a href="#" class="navbar-logo" data-aos="fade-down" data-aos-duration="1500">
-                <img src="/images/logo1.png" alt="Logo">
-            </a>
-            <!-- This button is ONLY visible on tablet/mobile -->
-            <button id="navbarDarkModeBtn" class="navbar-theme-toggle" aria-label="Toggle dark mode">
-                <i class="fa-solid fa-moon"></i>
-                <i class="fa-solid fa-sun"></i>
-            </button>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div data-aos="fade-up" data-aos-duration="2500" class="hero-content">
+      <h1>Learn Smarter, Achieve More</h1>
+      <p>A modern learning platform for university students. Get access to interactive notes, community-driven help, and resources to ace your exams.</p>
+      <a href="/html/dashboard.html"><button class="hero-cta">Get Started for Free</button></a>
+    </div>
+    <div data-aos="zoom-in" data-aos-duration="2500" class="hero-image">
+      <img src="/images/poster02.png" alt="Hero Illustration" width="450" height="350" loading="eager">
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" id="features">
+    <h2>Why Suffer Alone? Join the Club!</h2>
+    <div class="features-grid">
+      <div data-aos="fade-up" data-aos-duration="1000" class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <h3>Advice from Veterans</h3>
+        <p>Learn the secret hacks from students who passed, so you can too (probably).</p>
+      </div>
+      <div data-aos="fade-up" data-aos-duration="1300" class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-gamepad"></i></div>
+        <h3>Stuff You Won't Sleep Through</h3>
+        <p>Engaging quizzes that feel more like a game than a final exam.</p>
+      </div>
+      <div data-aos="fade-up" data-aos-duration="1600" class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-rocket"></i></div>
+        <h3>Flex Your Brain Gains</h3>
+        <p>Watch your progress bar fill up. It's like a video game, but the prize is a passing grade.</p>
+      </div>
+      <div data-aos="fade-up" data-aos-duration="1900" class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-users"></i></div>
+        <h3>The 2 AM Panic Squad</h3>
+        <p>Got a question at 2 AM? Someone else is probably awake and just as confused. Team up!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Courses Section -->
+  <section data-aos="fade-up" data-aos-duration="1000" class="courses" id="courses">
+    <h2>Choose Your Fighter</h2>
+    <div class="courses-grid">
+      <div data-aos="fade-up" data-aos-duration="1000" class="course-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/888/888879.png" alt="Code Bug" width="64" height="64" loading="lazy">
+        <h3>CSE 1111: Structured Programming</h3>
+        <p>Where a missing semicolon can ruin your whole weekend. Welcome to the jungle.</p>
+      </div>
+      <div data-aos="fade-up" data-aos-duration="1300" class="course-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/3655/3655653.png" alt="Magic Potion" width="64" height="64" loading="lazy" style="filter: invert(45%) sepia(73%) saturate(3580%) hue-rotate(347deg) brightness(103%) contrast(101%);">
+        <h3>MATH 1151: Fundamental Calculus</h3>
+        <p>Unlock the ancient secrets of dy/dx. Side effects may include questioning reality.</p>
+      </div>
+      <div data-aos="fade-up" data-aos-duration="1600" class="course-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/2887/2887771.png" alt="Microchip" width="64" height="64" loading="lazy">
+        <h3>CSE 1325: Digital Logic Design</h3>
+        <p>Learn to think in 1s and 0s. Your reward? Making a light blink. It's more exciting than it sounds.</p>
+      </div>
+      <div data-aos="fade-up" data-aos-duration="1900" class="course-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/2936/2936735.png" alt="Factory building" width="64" height="64" loading="lazy">
+        <h3>CSE 1115: Object Oriented Programming</h3>
+        <p>Because your code deserves a personality crisis. Is a car an object? Yes. Is your will to live? Also an object.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section data-aos="fade-up" data-aos-duration="1000" class="testimonials">
+    <h2>Shouts from the Survivors</h2>
+    <div class="testimonials-grid">
+      <div data-aos="fade-up" data-aos-duration="1000" class="testimonial-card">
+        <p>“My GPA was on life support. Learnix was the defibrillator. I passed calculus. Barely. But I passed.”</p>
+        <span>— A Sleep-Deprived Engineering Major</span>
+      </div>
+      <div data-aos="fade-up" data-aos-duration="1500" class="testimonial-card">
+        <p>“After the DLD module, the 1s and 0s stopped looking like a migraine and started looking like... well, still a migraine, but one I could solve.”</p>
+        <span>— CSE Student Who Has Seen The Light</span>
+      </div>
+      <div data-aos="fade-up" data-aos-duration="1800" class="testimonial-card">
+        <p>“It was 3 AM. My code was a dumpster fire. I posted a cry for help. Someone replied. We fixed it. I think I made a friend for life, or at least until the final project is due.”</p>
+        <span>— 'WhyIsThisNotWorking' on the forums</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dark Mode Floating Button -->
+  <button id="darkModeAwesomeBtn" class="darkmode-awesome-btn" aria-label="Toggle dark mode">
+    <i class="fa-solid fa-moon"></i>
+    <i class="fa-solid fa-sun"></i>
+  </button>
+
+  <!-- Skeleton Screen Overlay -->
+  <div id="skeleton-screen" class="skeleton-screen-overlay"></div>
+
+  <!-- Investors Marquee Section -->
+  <section data-aos="fade-up" data-aos-duration="1500" class="investors-section">
+    <h2 class="investors-title">Our Partners & Supporters</h2>
+    <div class="investors-marquee">
+      <div class="investors-track">
+        <img src="https://i.postimg.cc/KckLkvQC/01.png" alt="Sequoia Capital" width="120" height="60" loading="lazy">
+        <img src="https://i.postimg.cc/cHSWdWTG/icon-1.png" alt="500 Startups" width="120" height="60" loading="lazy">
+        <img src="https://i.postimg.cc/dVybrTy1/cooltext486622542090772.png" alt="Y Combinator" width="120" height="60" loading="lazy">
+        <img src="https://i.postimg.cc/FFSCPQKW/Cool-Text-Dark-Eagle-486622632834984.png" alt="Accel" width="120" height="60" loading="lazy">
+        <img src="https://i.postimg.cc/kXF1mFKW/Cool-Text-QNA-HUB-486622725401273.png" alt="Y Combinator" width="120" height="60" loading="lazy">
+        <img src="https://i.postimg.cc/9M68WLLY/cooltext486622691673774.png" alt="Sequoia Capital" width="120" height="60" loading="lazy">
+        <img src="https://i.postimg.cc/C5bvdbtT/cooltext486622702989202.png" alt="500 Startups" width="120" height="60" loading="lazy">
+        <img src="/images/logo1.png" alt="Accel" width="48" height="48" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- Courses Carousel Section -->
+  <section class="courses-carousel-section" data-aos="fade-up" data-aos-duration="1500">
+    <h2 class="carousel-title">Explore Our Courses</h2>
+    <div class="courses-carousel">
+      <div class="carousel-track coursesBoxes">
+        <!-- Course cards (use loading="lazy" for all images) -->
+        <div class="singleBox">
+          <img src="https://i.postimg.cc/KzzVVjPm/image.png" alt="imgOfBox" width="320" height="180" loading="lazy" />
+          <p class="boxTitle">CSE 1111 : Structured Programming Language</p>
         </div>
-
-
-            <ul class="navbar-menu">
-                <li data-aos="fade-down" data-aos-duration="2000"><a href="/contributors.html">Contributors</a></li>
-                <li data-aos="fade-down" data-aos-duration="2500"><a href="/html/dashboard.html">Courses</a></li>
-                <li data-aos="fade-down" data-aos-duration="3000"><a href="/html/about.html">About</a></li>
-                <li data-aos="fade-down" data-aos-duration="3000"><a href="/html/contact.html">Contact</a></li>
-            </ul>
+        <div class="singleBox carousel-imgfix">
+          <img src="https://i.postimg.cc/BZ1sQ7F4/33971-cool-math-wallpaper.jpg" alt="imgOfBox" width="320" height="180" loading="lazy" />
+          <p class="boxTitle">MATH 1151 : Fundamental Calculus</p>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div data-aos="fade-up" data-aos-duration="2500" class="hero-content">
-            <h1>Learn Smarter, Achieve More</h1>
-            <p>A modern learning platform for university students. Get access to interactive notes, community-driven help, and resources to ace your exams.</p>
-            <a href="/html/dashboard.html"><button class="hero-cta">Get Started for Free</button></a>
+        <div class="singleBox carousel-imgfix">
+          <img src="https://i.postimg.cc/NjCPXBhV/OIP.jpg" alt="imgOfBox" width="320" height="180" loading="lazy" />
+          <p class="boxTitle">CSE 1325 : Digital Logic Design</p>
         </div>
-        <div data-aos="zoom-in" data-aos-duration="2500" class="hero-image">
-            <img src="/images/poster02.png" alt="Hero Illustration">
+        <div class="singleBox">
+          <img src="https://i.postimg.cc/Hsqrk7nP/3864125.jpg" alt="imgOfBox" width="320" height="180" loading="lazy" />
+          <p class="boxTitle">CSE 1112 : Structured Programming Language Laboratory</p>
         </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features" id="features">
-        <h2>Why Suffer Alone? Join the Club!</h2>
-        <div class="features-grid">
-            <div data-aos="fade-up" data-aos-duration="1000" class="feature-card">
-                 <div class="feature-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-                <h3>Advice from Veterans</h3>
-                <p>Learn the secret hacks from students who passed, so you can too (probably).</p>
-            </div>
-            <div data-aos="fade-up" data-aos-duration="1300" class="feature-card">
-                 <div class="feature-icon"><i class="fa-solid fa-gamepad"></i></div>
-                <h3>Stuff You Won't Sleep Through</h3>
-                <p>Engaging quizzes that feel more like a game than a final exam.</p>
-            </div>
-            <div data-aos="fade-up" data-aos-duration="1600" class="feature-card">
-                 <div class="feature-icon"><i class="fa-solid fa-rocket"></i></div>
-                <h3>Flex Your Brain Gains</h3>
-                <p>Watch your progress bar fill up. It's like a video game, but the prize is a passing grade.</p>
-            </div>
-            <div data-aos="fade-up" data-aos-duration="1900" class="feature-card">
-                 <div class="feature-icon"><i class="fa-solid fa-users"></i></div>
-                <h3>The 2 AM Panic Squad</h3>
-                <p>Got a question at 2 AM? Someone else is probably awake and just as confused. Team up!</p>
-            </div>
+        <div class="singleBox">
+          <img src="https://i.postimg.cc/rmsVJ8zr/wp6152212.jpg" alt="imgOfBox" width="320" height="180" loading="lazy" />
+          <p class="boxTitle">SOC 2101 : Society, Environment and Engineering Ethics</p>
         </div>
-    </section>
-
-   <!-- Courses Section -->
-    <section data-aos="fade-up" data-aos-duration="1000" class="courses" id="courses">
-        <h2>Choose Your Fighter</h2>
-        <div class="courses-grid">
-            <div data-aos="fade-up" data-aos-duration="1000" class="course-card">
-                <img src="https://cdn-icons-png.flaticon.com/512/888/888879.png" alt="Code Bug">
-                <h3>CSE 1111: Structured Programming</h3>
-                <p>Where a missing semicolon can ruin your whole weekend. Welcome to the jungle.</p>
-            </div>
-            <div data-aos="fade-up" data-aos-duration="1300" class="course-card">
-                <img src="https://cdn-icons-png.flaticon.com/512/3655/3655653.png" alt="Magic Potion">
-                <h3>MATH 1151: Fundamental Calculus</h3>
-                <p>Unlock the ancient secrets of dy/dx. Side effects may include questioning reality.</p>
-            </div>
-            <div data-aos="fade-up" data-aos-duration="1600" class="course-card">
-                <img src="https://cdn-icons-png.flaticon.com/512/2887/2887771.png" alt="Microchip">
-                <h3>CSE 1325: Digital Logic Design</h3>
-                <p>Learn to think in 1s and 0s. Your reward? Making a light blink. It's more exciting than it sounds.</p>
-            </div>
-            <div data-aos="fade-up" data-aos-duration="1900" class="course-card">
-                <img src="https://cdn-icons-png.flaticon.com/512/2936/2936735.png" alt="Factory building">
-                <h3>CSE 1115: Object Oriented Programming</h3>
-                <p>Because your code deserves a personality crisis. Is a car an object? Yes. Is your will to live? Also an object.</p>
-            </div>
+        <div class="singleBox carousel-imgfix">
+          <img src="https://i.postimg.cc/RFW3017y/circuits-city-cpu-skyscraper-wallpaper-preview.jpg" alt="imgOfBox" width="320" height="180" loading="lazy" />
+          <p class="boxTitle">EEE 2113 : Electrical Circuits</p>
         </div>
-    </section>
-
-   <!-- Testimonials Section -->
-    <section data-aos="fade-up" data-aos-duration="1000" class="testimonials">
-        <h2>Shouts from the Survivors</h2>
-        <div class="testimonials-grid">
-            <div data-aos="fade-up" data-aos-duration="1000" class="testimonial-card">
-                <p>“My GPA was on life support. Learnix was the defibrillator. I passed calculus. Barely. But I passed.”</p>
-                <span>— A Sleep-Deprived Engineering Major</span>
-            </div>
-            <div data-aos="fade-up" data-aos-duration="1500" class="testimonial-card">
-                <p>“After the DLD module, the 1s and 0s stopped looking like a migraine and started looking like... well, still a migraine, but one I could solve.”</p>
-                <span>— CSE Student Who Has Seen The Light</span>
-            </div>
-            <div data-aos="fade-up" data-aos-duration="1800" class="testimonial-card">
-                <p>“It was 3 AM. My code was a dumpster fire. I posted a cry for help. Someone replied. We fixed it. I think I made a friend for life, or at least until the final project is due.”</p>
-                <span>— 'WhyIsThisNotWorking' on the forums</span>
-            </div>
+        <div class="singleBox carousel-imgfix">
+          <img src="https://i.postimg.cc/bJ4ZSGLJ/jg0adP.jpg" alt="imgOfBox" width="320" height="180" loading="lazy" />
+          <p class="boxTitle">CSE 2213 : Discrete Mathematics</p>
         </div>
-    </section>
+        <div class="singleBox carousel-imgfix">
+          <img src="https://i.postimg.cc/nrdw1JjC/480843-logo-java-1920x1080-download-hd-wallpaper.png" alt="imgOfBox" width="320" height="180" loading="lazy" />
+          <p class="boxTitle">CSE 1115 : Object Oriented Programming</p>
+        </div>
+      </div>
+    </div>
+    <div class="center-btn-container">
+      <a href="/html/dashboard.html"><button data-aos="zoom-in-up" data-aos-duration="1000" class="explore-course-btn">View All Courses</button></a>
+    </div>
+  </section>
 
-    <!-- Dark Mode Floating Button -->
-    <button id="darkModeAwesomeBtn" class="darkmode-awesome-btn" aria-label="Toggle dark mode">
-        <i class="fa-solid fa-moon"></i>
-        <i class="fa-solid fa-sun"></i>
-    </button>
-    
-    <!-- Skeleton Screen Overlay -->
-    <div id="skeleton-screen" class="skeleton-screen-overlay">
-        <!-- You can keep the skeleton structure as is, it will adopt the new colors automatically -->
+  <!-- Footer -->
+  <footer class="main-footer" style="background-color: #6f9196;">
+    <div class="footer-container">
+      <div class="footer-logo">
+        <img src="/images/logo1.png" alt="learnix-logo" width="48" height="48" loading="lazy">
+      </div>
+      <ul class="footer-links">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/contributors.html">Contributors</a></li>
+        <li><a href="/html/dashboard.html">Courses</a></li>
+        <li><a href="/html/about.html">About</a></li>
+        <li><a href="/html/contact.html">Contact</a></li>
+      </ul>
+      
+      <div class="footer-social">
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      </div>
+
     </div>
 
-    <!-- Investors Marquee Section -->
-    <section data-aos="fade-up" data-aos-duration="1500" class="investors-section">
-        <h2 class="investors-title">Our Partners & Supporters</h2>
-        <div class="investors-marquee">
-            <div class="investors-track">
-                 <!-- The images here are fine, the CSS will style them -->
-                  <img src="https://i.postimg.cc/KckLkvQC/01.png" alt="Sequoia Capital">
-                <img src="https://i.postimg.cc/cHSWdWTG/icon-1.png" alt="500 Startups">
-                <img src="https://i.postimg.cc/dVybrTy1/cooltext486622542090772.png" alt="Y Combinator">
-                <img src="https://i.postimg.cc/FFSCPQKW/Cool-Text-Dark-Eagle-486622632834984.png" alt="Accel">
-                <img src="https://i.postimg.cc/kXF1mFKW/Cool-Text-QNA-HUB-486622725401273.png" alt="Y Combinator">
-                <img src="https://i.postimg.cc/9M68WLLY/cooltext486622691673774.png" alt="Sequoia Capital">
-                <img src="https://i.postimg.cc/C5bvdbtT/cooltext486622702989202.png" alt="500 Startups">
-                <img src="/images/logo1.png" alt="Accel">
-            </div>
-        </div>
-    </section>
+    <div class="down_app">
+        <a href="/html/down_app.html"><img src="/images/down_ad2.png" alt=""></a>
+      </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Learnix. All rights reserved.</p>
+    </div>
+  </footer>
 
-    <!-- Courses Carousel Section -->
-    <section class="courses-carousel-section" data-aos="fade-up" data-aos-duration="1500" class="investors-section">
-        <h2 class="carousel-title">Explore Our Courses</h2>
-        <div class="courses-carousel">
-            <div class="carousel-track coursesBoxes">
-                <!-- Course cards will be styled by the new CSS -->
-                 <div class="singleBox">
-                  <img src="https://i.postimg.cc/KzzVVjPm/image.png" alt="imgOfBox" />
-                  <p class="boxTitle">CSE 1111 : Structured Programming Language</p>
-                
-                </div>
-                <div class="singleBox carousel-imgfix">
-                  <img src="https://i.postimg.cc/BZ1sQ7F4/33971-cool-math-wallpaper.jpg" alt="imgOfBox" />
-                  <p class="boxTitle">MATH 1151 : Fundamental Calculus</p>
-                  
-                </div>
-                <div class="singleBox carousel-imgfix">
-                  <img src="https://i.postimg.cc/NjCPXBhV/OIP.jpg" alt="imgOfBox" />
-                  <p class="boxTitle">CSE 1325 : Digital Logic Design</p>
-                  
-                </div>
-                <div class="singleBox">
-                  <img src="https://i.postimg.cc/Hsqrk7nP/3864125.jpg" alt="imgOfBox" />
-                  <p class="boxTitle">CSE 1112 : Structured Programming Language Laboratory</p>
-                  
-                </div>
-                <div class="singleBox">
-                  <img src="https://i.postimg.cc/rmsVJ8zr/wp6152212.jpg" alt="imgOfBox" />
-                  <p class="boxTitle">SOC 2101 : Society, Environment and Engineering Ethics</p>
-                  
-                </div>
-                <div class="singleBox carousel-imgfix">
-                  <img src="https://i.postimg.cc/RFW3017y/circuits-city-cpu-skyscraper-wallpaper-preview.jpg" alt="imgOfBox" />
-                  <p class="boxTitle">EEE 2113 : Electrical Circuits</p>
-                  
-                </div>
-                <div class="singleBox carousel-imgfix">
-                  <img src="https://i.postimg.cc/bJ4ZSGLJ/jg0adP.jpg" alt="imgOfBox" />
-                  <p class="boxTitle">CSE 2213 : Discrete Mathematics</p>
-                  
-                </div>
-                <div class="singleBox carousel-imgfix">
-                  <img src="https://i.postimg.cc/nrdw1JjC/480843-logo-java-1920x1080-download-hd-wallpaper.png" alt="imgOfBox" />
-                  <p class="boxTitle">CSE 1115 : Object Oriented Programming</p>
-                 
-                </div>
-            </div>
-        </div>
-
-        <div class="center-btn-container">
-            <a href="/html/dashboard.html"><button data-aos="zoom-in-up" data-aos-duration="1000" class="explore-course-btn">View All Courses</button></a>
-        </div>
-    </section>
-
-
-    <!-- Footer -->
-    <footer class="main-footer">
-        <div class="footer-container">
-            <div class="footer-logo">
-                <img src="/images/logo1.png" alt="learnix-logo">
-            </div>
-            <ul class="footer-links">
-                <li><a href="/index.html">Home</a></li>
-                <li><a href="/contributors.html">Contributors</a></li>
-                <li><a href="/html/dashboard.html">Courses</a></li>
-                <li><a href="/html/about.html">About</a></li>
-                <li><a href="/html/contact.html">Contact</a></li>
-            </ul>
-            <div class="footer-social">
-                <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-                <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Learnix. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script src="app.js"></script>
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-        AOS.init({ once: true, offset: 50 });
-    </script>
+  <!-- JS: Defer all scripts -->
+  <script src="app.js" defer></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js" defer></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', function() {
+      AOS.init({ once: true, offset: 50 });
+    });
+  </script>
 </body>
 </html>
