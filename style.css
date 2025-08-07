@@ -165,7 +165,7 @@ body.dark-mode {
   color: var(--primary-light);
 }
 .dark-mode .footer-bottom p {
-  color: var(--text-muted-dark);
+  color: black;
 }
 
 /* Fade animation for theme toggle */
@@ -191,20 +191,13 @@ body.dark-mode {
     transition: var(--transition);
 }
 
-.navbar-theme-toggle:hover {
-    border-color: var(--primary-dark);
-    color: var(--primary-dark);
-}
 
 .dark-mode .navbar-theme-toggle {
-    border-color: var(--border-dark);
+    border-color: white;
     color: var(--text-light);
 }
 
-.dark-mode .navbar-theme-toggle:hover {
-    border-color: var(--primary-light);
-    color: var(--primary-light);
-}
+
 
 /* Icons inside the navbar toggle */
 .navbar-theme-toggle .fa-sun,
@@ -261,6 +254,7 @@ body.dark-mode .navbar-theme-toggle .fa-sun {
         display: flex; /* This makes it visible */
         align-items: center;
         justify-content: space-between;
+        color: white;
     }
   }
 
@@ -312,14 +306,17 @@ body.dark-mode .navbar-theme-toggle .fa-sun {
 /* --- Hero Section --- */
 .hero {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 3rem;
+  align-items: center;         /* Vertically center content */
+  justify-content: center;     /* Horizontally center content */
+  gap: 3rem;                   /* Space between items */
   margin-top: 2rem;
 }
+
 .hero-content {
-  flex: 1.2;
+  flex: 1;
+  text-align: center;           /* Ensure text is centered */
 }
+
 .hero-content h1 {
   font-size: 3.2rem;
   margin-bottom: 1rem;
@@ -328,16 +325,19 @@ body.dark-mode .navbar-theme-toggle .fa-sun {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 .dark-mode .hero-content h1 {
-    background: linear-gradient(45deg, var(--primary-light), var(--accent));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  background: linear-gradient(45deg, var(--primary-light), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .hero-content p {
   font-size: 1.1rem;
   margin-bottom: 2rem;
+  text-align: center;         /* Ensure paragraph text is centered */
 }
+
 .hero-cta {
   background: var(--primary-dark);
   color: var(--card-light);
@@ -349,21 +349,28 @@ body.dark-mode .navbar-theme-toggle .fa-sun {
   cursor: pointer;
   box-shadow: 0 4px 15px var(--shadow-lg);
   transition: var(--transition);
+  margin-top: 1rem;             /* Add margin for spacing above button */
 }
+
 .hero-cta:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 25px var(--shadow-lg);
   background-color: var(--accent);
   color: var(--text-dark);
 }
+
 .hero-image {
   flex: 1;
+  display: flex;
+  justify-content: center;     /* Horizontally center the image */
 }
+
 .hero-image img {
   width: 100%;
-  max-width: 450px;
+  max-width: 380px;
   border-radius: var(--radius);
 }
+
 
 /* --- Features & Courses Sections --- */
 .features h2, .courses h2, .testimonials h2, .investors-title, .carousel-title {
@@ -598,7 +605,7 @@ h3 {
   list-style: none;
 }
 .footer-links a, .footer-social a {
-  color: var(--text-muted-light);
+  color: black;
   text-decoration: none;
   transition: var(--transition);
 }
@@ -617,7 +624,21 @@ h3 {
   border-top: 1px solid var(--border-light);
 }
 .dark-mode .footer-bottom { border-top-color: var(--border-dark); }
-.footer-bottom p { font-size: 0.9rem; }
+.footer-bottom p { font-size: 0.9rem; 
+color: #121212;}
+
+.down_app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;  /* optional, adds spacing between other footer content */
+}
+
+.down_app img {
+  width: 100%;
+  max-width: 200px;  /* ensures the image doesn't get too big */
+  height: auto;  /* ensures the image maintains its aspect ratio */
+}
 
 
 /* ==========================================================================
